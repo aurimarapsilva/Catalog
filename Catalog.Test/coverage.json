@@ -1,0 +1,210 @@
+{
+  "Catalog.Core.dll": {
+    "D:\\Projetos\\Catalog\\Catalog.Core\\Entities\\CatalogBrand.cs": {
+      "Catalog.Core.Entities.CatalogBrand": {
+        "System.String Catalog.Core.Entities.CatalogBrand::get_Brand()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Projetos\\Catalog\\Catalog.Core\\Entities\\CatalogItem.cs": {
+      "Catalog.Core.Entities.CatalogItem": {
+        "System.String Catalog.Core.Entities.CatalogItem::get_Name()": {
+          "Lines": {
+            "22": 10
+          },
+          "Branches": []
+        },
+        "System.String Catalog.Core.Entities.CatalogItem::get_Description()": {
+          "Lines": {
+            "23": 9
+          },
+          "Branches": []
+        },
+        "System.Decimal Catalog.Core.Entities.CatalogItem::get_Price()": {
+          "Lines": {
+            "24": 9
+          },
+          "Branches": []
+        },
+        "System.String Catalog.Core.Entities.CatalogItem::get_PictureFileName()": {
+          "Lines": {
+            "25": 9
+          },
+          "Branches": []
+        },
+        "System.String Catalog.Core.Entities.CatalogItem::get_PictureUri()": {
+          "Lines": {
+            "26": 9
+          },
+          "Branches": []
+        },
+        "System.Int32 Catalog.Core.Entities.CatalogItem::get_CatalogTypeId()": {
+          "Lines": {
+            "27": 9
+          },
+          "Branches": []
+        },
+        "System.Int32 Catalog.Core.Entities.CatalogItem::get_CatalogBrandId()": {
+          "Lines": {
+            "28": 9
+          },
+          "Branches": []
+        },
+        "System.Decimal Catalog.Core.Entities.CatalogItem::get_AvailableStock()": {
+          "Lines": {
+            "31": 51
+          },
+          "Branches": []
+        },
+        "System.Decimal Catalog.Core.Entities.CatalogItem::get_RestockThreshold()": {
+          "Lines": {
+            "33": 9
+          },
+          "Branches": []
+        },
+        "System.Decimal Catalog.Core.Entities.CatalogItem::get_MaxStockThreshold()": {
+          "Lines": {
+            "35": 15
+          },
+          "Branches": []
+        },
+        "System.DateTime Catalog.Core.Entities.CatalogItem::get_LastUpdate()": {
+          "Lines": {
+            "37": 18
+          },
+          "Branches": []
+        },
+        "System.Decimal Catalog.Core.Entities.CatalogItem::RemoveStock(System.Int32)": {
+          "Lines": {
+            "47": 4,
+            "48": 4,
+            "49": 1,
+            "51": 4,
+            "52": 1,
+            "54": 4,
+            "56": 4,
+            "58": 4,
+            "60": 4,
+            "61": 4
+          },
+          "Branches": [
+            {
+              "Line": 48,
+              "Offset": 19,
+              "EndOffset": 21,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 48,
+              "Offset": 19,
+              "EndOffset": 54,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 51,
+              "Offset": 63,
+              "EndOffset": 65,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 51,
+              "Offset": 63,
+              "EndOffset": 82,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            }
+          ]
+        },
+        "System.Decimal Catalog.Core.Entities.CatalogItem::AddStock(System.Decimal)": {
+          "Lines": {
+            "65": 5,
+            "66": 5,
+            "69": 5,
+            "72": 1,
+            "74": 4,
+            "76": 5,
+            "78": 5,
+            "79": 5
+          },
+          "Branches": [
+            {
+              "Line": 69,
+              "Offset": 33,
+              "EndOffset": 35,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 69,
+              "Offset": 33,
+              "EndOffset": 72,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            }
+          ]
+        },
+        "System.Void Catalog.Core.Entities.CatalogItem::.ctor(System.String,System.String,System.Decimal,System.Int32,System.Int32,System.Decimal,System.Decimal,System.String,System.String)": {
+          "Lines": {
+            "7": 9,
+            "8": 9,
+            "9": 9,
+            "10": 9,
+            "11": 9,
+            "12": 9,
+            "13": 9,
+            "14": 9,
+            "15": 9,
+            "16": 9,
+            "17": 9,
+            "18": 9,
+            "19": 9,
+            "20": 9
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Projetos\\Catalog\\Catalog.Core\\Entities\\CatalogType.cs": {
+      "Catalog.Core.Entities.CatalogType": {
+        "System.String Catalog.Core.Entities.CatalogType::get_Type()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Projetos\\Catalog\\Catalog.Core\\Entities\\Entity.cs": {
+      "Catalog.Core.Entities.Entity": {
+        "System.String Catalog.Core.Entities.Entity::get_Id()": {
+          "Lines": {
+            "12": 10
+          },
+          "Branches": []
+        },
+        "System.Void Catalog.Core.Entities.Entity::.ctor()": {
+          "Lines": {
+            "8": 9,
+            "9": 9,
+            "10": 9,
+            "11": 9
+          },
+          "Branches": []
+        }
+      }
+    }
+  }
+}
