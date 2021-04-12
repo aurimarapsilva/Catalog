@@ -29,13 +29,12 @@ namespace Catalog.Test.Entities
         [TestCategory("Entities")]
         public void RemoveStockInvalidForQuantityLessthanOrEqualTo0()
         {
-            var item = new CatalogItem("Teste", "Realizando teste na camada de entidade", 0.85m, 1, 1, 5, 10);
 
-            item.AddStock(2);
+            _item.AddStock(2);
 
-            item.RemoveStock(0);
+            _item.RemoveStock(0);
 
-            Assert.IsTrue(item.Invalid);
+            Assert.IsTrue(_item.Invalid);
         }
 
         [TestMethod]
