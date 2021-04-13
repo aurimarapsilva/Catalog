@@ -9,7 +9,7 @@ namespace Catalog.Test.Entities
     {
         public CatalogItemTest()
         {
-            _item = new CatalogItem("Teste", "Realizando teste na camada de entidade", 0.85m, 1, 1, 5, 10);
+            _item = new CatalogItem("Teste", "Realizando teste na camada de entidade", 0.85m, "1", "1", 5, 10);
         }
 
         private CatalogItem _item;
@@ -18,7 +18,7 @@ namespace Catalog.Test.Entities
         [TestCategory("Entities")]
         public void RemoveStockInvalidForNotHavingAvailableStock()
         {
-            var item = new CatalogItem("Teste", "Realizando teste na camada de entidade", 0.85m, 1, 1, 5);
+            var item = new CatalogItem("Teste", "Realizando teste na camada de entidade", 0.85m, "1", "1", 5);
 
             item.RemoveStock(5);
 
@@ -65,7 +65,7 @@ namespace Catalog.Test.Entities
         [TestCategory("Entities")]
         public void AddStockTestFailed()
         {
-            Assert.AreEqual(10, _item.AddStock(12.5m));
+            Assert.AreNotEqual(12.5m, _item.AddStock(12.5m));
         }
 
         [TestMethod]

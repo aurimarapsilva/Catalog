@@ -156,6 +156,24 @@
             }
           ]
         },
+        "System.Void Catalog.Core.Entities.CatalogItem::UpdateCatalogItem(System.String,System.String,System.Decimal,System.Int32,System.Int32,System.Decimal,System.Decimal,System.String,System.String)": {
+          "Lines": {
+            "83": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "88": 0,
+            "89": 0,
+            "90": 0,
+            "91": 0,
+            "92": 0,
+            "93": 0,
+            "94": 0,
+            "95": 0
+          },
+          "Branches": []
+        },
         "System.Void Catalog.Core.Entities.CatalogItem::.ctor(System.String,System.String,System.Decimal,System.Int32,System.Int32,System.Decimal,System.Decimal,System.String,System.String)": {
           "Lines": {
             "7": 8,
@@ -201,6 +219,45 @@
             "9": 8,
             "10": 8,
             "11": 8
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Projetos\\Catalog\\Catalog.Core\\Commands\\GenericResultCommand.cs": {
+      "Catalog.Core.Commands.GenericResultCommand": {
+        "System.Boolean Catalog.Core.Commands.GenericResultCommand::get_Sucess()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.String Catalog.Core.Commands.GenericResultCommand::get_Message()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.Object Catalog.Core.Commands.GenericResultCommand::get_Data()": {
+          "Lines": {
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.Void Catalog.Core.Commands.GenericResultCommand::.ctor()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.Void Catalog.Core.Commands.GenericResultCommand::.ctor(System.Boolean,System.String,System.Object)": {
+          "Lines": {
+            "8": 0,
+            "9": 0,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0
           },
           "Branches": []
         }

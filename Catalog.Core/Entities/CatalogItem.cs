@@ -4,7 +4,7 @@ namespace Catalog.Core.Entities
 {
     public class CatalogItem : Entity
     {
-        public CatalogItem(string name, string description, decimal price, int catalogTypeId, int catalogBrandId, decimal restockThreshold = 0, decimal maxStockThreshold = 0, string pictureFileName = null, string pictureUri = null)
+        public CatalogItem(string name, string description, decimal price, string catalogTypeId, string catalogBrandId, decimal restockThreshold = 0, decimal maxStockThreshold = 0, string pictureFileName = null, string pictureUri = null)
         {
             Name = name;
             Description = description;
@@ -24,8 +24,8 @@ namespace Catalog.Core.Entities
         public decimal Price { get; private set; }
         public string PictureFileName { get; private set; }
         public string PictureUri { get; private set; }
-        public int CatalogTypeId { get; private set; }
-        public int CatalogBrandId { get; private set; }
+        public string CatalogTypeId { get; private set; }
+        public string CatalogBrandId { get; private set; }
 
         // Quantidade em estoque
         public decimal AvailableStock { get; private set; }
@@ -76,6 +76,22 @@ namespace Catalog.Core.Entities
             LastUpdate = DateTime.Now;
 
             return AvailableStock - original;
+        }
+
+        // Atualiza os dados do item 
+        public void UpdateCatalogItem(string name, string description, decimal price, string catalogTypeId, string catalogBrandId, decimal restockThreshold, decimal maxStockThreshold, string pictureFileName, string pictureUri)
+        {
+            Name = name;
+            Description = description;
+            Price = price;
+            PictureFileName = pictureFileName;
+            PictureUri = pictureUri;
+            CatalogTypeId = catalogTypeId;
+            CatalogBrandId = catalogBrandId;
+            AvailableStock = 0;
+            RestockThreshold = restockThreshold;
+            MaxStockThreshold = maxStockThreshold;
+            LastUpdate = DateTime.Now;
         }
     }
 }
