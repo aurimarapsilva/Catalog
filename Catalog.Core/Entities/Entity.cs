@@ -3,7 +3,7 @@ using Flunt.Notifications;
 
 namespace Catalog.Core.Entities
 {
-    public abstract class Entity : Notifiable
+    public abstract class Entity : Notifiable, IEntity
     {
         public Entity()
         {

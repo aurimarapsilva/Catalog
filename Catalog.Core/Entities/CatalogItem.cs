@@ -23,7 +23,7 @@ namespace Catalog.Core.Entities
         public string Description { get; private set; }
         public decimal Price { get; private set; }
         public string PictureFileName { get; private set; }
-        public string PictureUri { get; private set; }
+        public string PictureUri { get; set; }
         public string CatalogTypeId { get; private set; }
         public string CatalogBrandId { get; private set; }
 
