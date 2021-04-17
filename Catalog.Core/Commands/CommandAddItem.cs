@@ -7,19 +7,19 @@ namespace Catalog.Core.Commands
     public class CommandAddItem : Notifiable, ICommand
     {
         public CommandAddItem() { }
-        public CommandAddItem(int id, decimal quantity)
+        public CommandAddItem(string id, decimal quantity)
         {
             Id = id;
             Quantity = quantity;
         }
 
-        public int Id { get; set; }
+        public string Id { get; set; }
         public decimal Quantity { get; set; }
         public void Validate()
         {
             AddNotifications(new Contract()
                 .Requires()
-                .IsGreaterThan(Id, 0, "CatalogItem.Id", "O id informado deve ser maior que 0(zero)")
+                .IsNotNullOrEmpty(Id, "CatalogItem.Id", "É necessário informar um id")
                 .IsGreaterOrEqualsThan(Quantity, 0, "Quantity", "A quantidade a ser inserida deve ser igual ou maior que 0 (zero)"));
         }
     }

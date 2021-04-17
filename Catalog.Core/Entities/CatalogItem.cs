@@ -43,7 +43,7 @@ namespace Catalog.Core.Entities
         // Caso não haja estoque suficiente disponível, o método removerá todo o estoque disponível e retornará essa quantidade ao cliente.
         // Nesse caso, é responsabilidade do cliente determinar se o valor que é devolvido é o mesmo que quantidade Desejada.
         // É inválido passar um número negativo.
-        public decimal RemoveStock(int quantityDesired)
+        public decimal RemoveStock(decimal quantityDesired)
         {
             if (AvailableStock == 0)
                 AddNotification("CatalogItem.AvailableStock", $"Estoque vazio, item de produto {Name} está esgotado");
@@ -79,7 +79,7 @@ namespace Catalog.Core.Entities
         }
 
         // Atualiza os dados do item 
-        public void UpdateCatalogItem(string name, string description, decimal price, string catalogTypeId, string catalogBrandId, decimal restockThreshold, decimal maxStockThreshold, string pictureFileName, string pictureUri)
+        public void UpdateCatalogItem(string name, string description, decimal price, string catalogTypeId, string catalogBrandId, decimal restockThreshold, decimal maxStockThreshold, string pictureFileName, string pictureUri = null)
         {
             Name = name;
             Description = description;

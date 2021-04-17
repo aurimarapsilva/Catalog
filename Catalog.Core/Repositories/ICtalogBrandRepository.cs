@@ -8,6 +8,7 @@ namespace Catalog.Core.Repositories
     {
         bool CreateBrandAsync(CatalogBrand brand);
         bool UpdateBrandAsync(CatalogBrand brand);
-        Task<IResultQuery<CatalogBrand>> CatalogBrandsAsync();
+        Task<IResultQuery<CatalogBrand>> CatalogBrandsAsync(int pageSize = 10, int pageIndex = 0);
+        Task<CatalogBrand> CatalogBrandIdAsync(string id);
     }
 }

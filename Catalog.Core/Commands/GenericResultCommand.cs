@@ -5,14 +5,14 @@ namespace Catalog.Core.Commands
     public class GenericResultCommand : IResultCommand
     {
         public GenericResultCommand() { }
-        public GenericResultCommand(bool sucess, string message, object data)
+        public GenericResultCommand(bool success, string message, object data)
         {
-            Sucess = sucess;
+            Success = success;
             Message = message;
             Data = data;
         }
 
-        public bool Sucess { get; set; }
+        public bool Success { get; set; }
         public string Message { get; set; }
         public object Data { get; set; }
     }

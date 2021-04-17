@@ -8,9 +8,9 @@ namespace Catalog.Core.Repositories
     public interface ICatalogItemRepository
     {
         bool CreateProductAsync(CatalogItem product);
-        bool UpdateProductAsync(CatalogItem product);
+        bool UpdateProductAsync(CatalogItem product, bool raiseProductPriceChangedEvent = false);
         Task<IResultQuery<CatalogItem>> GetItemsByIdsAsync(int pageSize = 10, int pageIndex = 0, string ids = null);
-        Task<IResultQuery<CatalogItem>> ItemByIdAsync(string id);
+        Task<CatalogItem> ItemByIdAsync(string id);
         Task<IResultQuery<CatalogItem>> ItemsWithNameAsync(string name, int pageSize = 10, int pageIndex = 0);
         Task<IResultQuery<CatalogItem>> ItemsByTypeIdAndBrandIdAsync(string catalogTypeId, string catalogBrandId, int pageSize = 10, int pageIndex = 0);
         Task<IResultQuery<CatalogItem>> ItemsByBrandIdAsync(string catalogBrandId, int pageSize = 10, int pageIndex = 0);
