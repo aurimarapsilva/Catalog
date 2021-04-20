@@ -25,8 +25,9 @@ namespace Catalog.Core.Entities
         public string PictureFileName { get; private set; }
         public string PictureUri { get; set; }
         public string CatalogTypeId { get; private set; }
+        public CatalogType CatalogType { get; private set; }
         public string CatalogBrandId { get; private set; }
-
+        public CatalogBrand CatalogBrand { get; private set; }
         // Quantidade em estoque
         public decimal AvailableStock { get; private set; }
         // Estoque disponível no qual devemos fazer um novo pedido

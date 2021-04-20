@@ -79,7 +79,7 @@ namespace Catalog.Infra.DataContext
             }
 
             return File.ReadAllLines(csvFileCatalogBrands)
-                                        .Skip(1) // skip header row
+                                        .Skip(1) // pular a linha do cabeçalho
                                         .Select(x => CreateCatalogBrand(x))
                                         .Where(x => x != null);
         }
@@ -126,7 +126,7 @@ namespace Catalog.Infra.DataContext
             }
 
             return File.ReadAllLines(csvFileCatalogTypes)
-                                        .Skip(1) // skip header row
+                                        .Skip(1) // pular a linha do cabeçalho
                                         .Select(x => CreateCatalogType(x))
                                         .Where(x => x != null);
         }

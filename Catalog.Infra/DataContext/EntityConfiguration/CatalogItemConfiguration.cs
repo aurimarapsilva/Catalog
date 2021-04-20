@@ -20,7 +20,9 @@ namespace Catalog.Infra.DataContext.EntityConfiguration
             builder.Property(x => x.MaxStockThreshold).IsRequired(true).HasColumnType("decimal(11,10)");
             builder.Property(x => x.LastUpdate).IsRequired(true).HasColumnType("dateTime");
             builder.Property(x => x.CatalogBrandId).IsRequired(true).HasColumnType("varchar(8)").HasMaxLength(8);
+            builder.HasOne(x => x.CatalogBrand).WithMany().HasForeignKey(x => x.CatalogBrandId);
             builder.Property(x => x.CatalogTypeId).IsRequired(true).HasColumnType("varchar(8)").HasMaxLength(8);
+            builder.HasOne(x => x.CatalogType).WithMany().HasForeignKey(x => x.CatalogTypeId);
             builder.Ignore(x => x.PictureUri);
         }
     }
