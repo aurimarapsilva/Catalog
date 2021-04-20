@@ -35,7 +35,8 @@ namespace Catalog.Core.Entities
         public decimal MaxStockThreshold { get; private set; }
         // Ultima data de Atualização
         public DateTime LastUpdate { get; private set; }
-
+        // Verdadeiro se o item estiver em novo pedido
+        public bool OnReorder { get; private set; }
         // Diminui a quantidade de um item específico no estoque e garante que o limiar de reabastecimento não
         // foi violado. Nesse caso, uma solicitação de reabastecimento é gerado no virificar limiar.
         //
@@ -73,6 +74,8 @@ namespace Catalog.Core.Entities
             else
                 AvailableStock += quantity;
 
+            OnReorder = false;
+
             LastUpdate = DateTime.Now;
 
             return AvailableStock - original;
@@ -92,6 +95,12 @@ namespace Catalog.Core.Entities
             RestockThreshold = restockThreshold;
             MaxStockThreshold = maxStockThreshold;
             LastUpdate = DateTime.Now;
+        }
+
+        // Configura o se é um novo pedido
+        public void NewOrder(bool onReOrder)
+        {
+            OnReorder = onReOrder;
         }
     }
 }
