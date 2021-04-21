@@ -13,7 +13,7 @@ namespace Catalog.Core.Queries
 
         public static Expression<Func<CatalogItem, bool>> GetByName(string name)
         {
-            return x => x.Name == name;
+            return x => x.Name.StartsWith(name); ;
         }
 
         public static Expression<Func<CatalogItem, bool>> GetByCatalogBrandId(int catalogBrandId)

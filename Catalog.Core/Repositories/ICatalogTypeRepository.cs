@@ -8,7 +8,7 @@ namespace Catalog.Core.Repositories
     {
         bool CreateTypeAsync(CatalogType type);
         bool UpdateTypeAsync(CatalogType type);
-        Task<IResultQuery<CatalogType>> CatalogTypesAsync(int pageSize = 10, int pageIndex = 0);
+        Task<IResultQuery> CatalogTypesAsync(int pageSize = 10, int pageIndex = 0);
         Task<CatalogType> CatalogTypeById(int id);
     }
 }
