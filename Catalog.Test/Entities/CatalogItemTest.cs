@@ -9,7 +9,7 @@ namespace Catalog.Test.Entities
     {
         public CatalogItemTest()
         {
-            _item = new CatalogItem("Teste", "Realizando teste na camada de entidade", 0.85m, "1", "1", 5, 10);
+            _item = new CatalogItem("Teste", "Realizando teste na camada de entidade", 0.85m, 1, 1, 5, 10);
         }
 
         private CatalogItem _item;
@@ -18,7 +18,7 @@ namespace Catalog.Test.Entities
         [TestCategory("Entities")]
         public void RemoveStockInvalidForNotHavingAvailableStock()
         {
-            var item = new CatalogItem("Teste", "Realizando teste na camada de entidade", 0.85m, "1", "1", 5);
+            var item = new CatalogItem("Teste", "Realizando teste na camada de entidade", 0.85m, 1, 1, 5);
 
             item.RemoveStock(5);
 
@@ -68,11 +68,10 @@ namespace Catalog.Test.Entities
             Assert.AreNotEqual(12.5m, _item.AddStock(12.5m));
         }
 
-        [TestMethod]
-        [TestCategory("Entities")]
-        public void IdCharacterQuantitiesEqualTo8()
+        [TestCleanup]
+        public void CleanUp()
         {
-            Assert.AreEqual(8, _item.Id.Length);
+            _item = null;
         }
     }
 }

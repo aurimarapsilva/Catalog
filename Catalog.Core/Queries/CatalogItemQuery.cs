@@ -6,7 +6,7 @@ namespace Catalog.Core.Queries
 {
     public static class CatalogItemQuery
     {
-        public static Expression<Func<CatalogItem, bool>> GetById(string id)
+        public static Expression<Func<CatalogItem, bool>> GetById(int id)
         {
             return x => x.Id == id;
         }
@@ -16,12 +16,12 @@ namespace Catalog.Core.Queries
             return x => x.Name == name;
         }
 
-        public static Expression<Func<CatalogItem, bool>> GetByCatalogBrandId(string catalogBrandId)
+        public static Expression<Func<CatalogItem, bool>> GetByCatalogBrandId(int catalogBrandId)
         {
             return x => x.CatalogBrandId == catalogBrandId;
         }
 
-        public static Expression<Func<CatalogItem, bool>> GetByCatalogTypeId(string catalogTypeId)
+        public static Expression<Func<CatalogItem, bool>> GetByCatalogTypeId(int catalogTypeId)
         {
             return x => x.CatalogTypeId == catalogTypeId;
         }
