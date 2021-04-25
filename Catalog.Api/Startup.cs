@@ -1,14 +1,16 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
+using Catalog.Core.Handlers;
+using Catalog.Core.Repositories;
+using Catalog.Infra.DataContext;
+using Catalog.Infra.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace catalog.api
@@ -22,30 +24,82 @@ namespace catalog.api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "catalog.api", Version = "v1" });
-            });
+
+            services.AddResponseCompression();
+
+            // Configura injeção de dependencia do banco de dados na aplicação
+            services.AddDbContext<StoreDataContext>(x =>
+                x.UseSqlServer(Configuration.GetConnectionString("conn"))
+            );
+
+            // Configura as dependencias dos manipuladores
+            services.AddTransient<HandlerCatalogBrand, HandlerCatalogBrand>();
+            services.AddTransient<HandlerCatalogItem, HandlerCatalogItem>();
+            services.AddTransient<HandlerCatalogType, HandlerCatalogType>();
+
+            // Configura as dependencias dos repositorios
+            services.AddTransient<ICatalogBrandRepository, CatalogBrandRepository>();
+            services.AddTransient<ICatalogItemRepository, CatalogItemRepository>();
+            services.AddTransient<ICatalogTypeRepository, CatalogTypeRepository>();
+
+            services.AddSwaggerGen(x =>
+               {
+                   x.SwaggerDoc("v1", new OpenApiInfo
+                   {
+                       Version = "v1",
+                       Title = "Catalog Service",
+                       Description = "Service responsible for product registration and inventory control",
+                       //    TermsOfService = new Uri("https://example.com/terms"),
+                       Contact = new OpenApiContact
+                       {
+                           Name = "Victor Hernandes",
+                           Email = "programacao.hernandes@gmail.com",
+                           Url = new Uri("https://www.linkedin.com/in/victor-hernandes-57412562/")
+                       },
+                       License = new OpenApiLicense
+                       {
+                           Name = "MIT license",
+                           Url = new Uri("https://opensource.org/licenses/MIT")
+                       }
+                   });
+
+                   var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                   var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                   x.IncludeXmlComments(xmlPath);
+               });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "catalog.api v1"));
-            }
+
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+            );
+
+            app.UseAuthentication();
+
             app.UseAuthorization();
+
+            app.UseResponseCompression();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(x =>
+            {
+                x.SwaggerEndpoint("/swagger/v1/swagger.json", "Catalog Service v1");
+                x.RoutePrefix = string.Empty;
+            });
 
             app.UseEndpoints(endpoints =>
             {

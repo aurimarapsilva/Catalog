@@ -19,6 +19,6 @@ namespace Catalog.Core.Queries
         public int PagIndex { get; set; }
         public int PagSize { get; set; }
         public long Count { get; set; }
-        public object Data { get; private set; }
+        public object Data { get; set; }
     }
 }
