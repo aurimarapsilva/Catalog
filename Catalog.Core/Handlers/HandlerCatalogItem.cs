@@ -101,8 +101,18 @@ namespace Catalog.Core.Handlers
                                                 message: "Não foi possível prosseguir com a solicitação, pois não foi localizado nenhum item",
                                                 data: null);
 
-            // faz a adição do novo item ao estoque e valida se houve sucesso
-            if (command.QuantityDesired != item.RemoveStock(quantityDesired: command.QuantityDesired))
+
+            // faz a remoção do item no estoque e salva em uma variavel o valor da remoção para validação futura
+            var resultStock = item.RemoveStock(quantityDesired: command.QuantityDesired);
+
+            // verifica se a notificações no item
+            if (item.Invalid)
+                return new GenericResultCommand(success: false,
+                                                message: "Não foi possível prosseguir com a solicitação",
+                                                data: item.Notifications);
+
+            // verifica se o valor do resultStock é igual ao ao valor que foi repassado pelo command para retirar, caso negativo retorna a notificação
+            if (command.QuantityDesired != resultStock)
                 return new GenericResultCommand(success: false,
                                                 message: "Não foi possível prosseguir com a solicitação, verificar a quantidade de itens que o estoque pode receber, e o que ja tem cadastrado",
                                                 data: null);

@@ -6,6 +6,12 @@ namespace Catalog.Core.Commands
 {
     public class CommandAddType : Notifiable, ICommand
     {
+        public CommandAddType() { }
+        public CommandAddType(string type)
+        {
+            Type = type;
+        }
+
         public string Type { get; set; }
         public void Validate()
         {
