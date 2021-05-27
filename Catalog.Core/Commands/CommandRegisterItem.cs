@@ -4,32 +4,99 @@ using Flunt.Validations;
 
 namespace Catalog.Core.Commands
 {
+    /// <summary>
+    /// Classe responsável por cadastrar um novo produto
+    /// </summary>
     public class CommandRegisterItem : Notifiable, ICommand
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public CommandRegisterItem() { }
-        public CommandRegisterItem(string name, string description, decimal price, string pictureFileName, int catalogTypeId, int catalogBrandId, decimal restockThreshold, decimal maxStockThreshold)
+        /// <summary>
+        /// Contructor
+        /// </summary>
+        /// <param name="name">Nome do produto</param>
+        /// <param name="description">descrição do produto</param>
+        /// <param name="price">preço do produto</param>
+        /// <param name="pictureFileName"></param>
+        /// <param name="catalogTypeId">id do tipo de produto</param>
+        /// <param name="catalogBrandId">id da marca do produto </param>
+        /// <param name="restockThreshold">Limiar de reabastecimento</param>
+        /// <param name="maxStockThreshold">Estoque maximo</param>
+        public CommandRegisterItem(string name, string description, decimal price, int catalogTypeId, int catalogBrandId, decimal restockThreshold, decimal maxStockThreshold)
         {
             Name = name;
             Description = description;
             Price = price;
-            PictureFileName = pictureFileName;
             CatalogTypeId = catalogTypeId;
             CatalogBrandId = catalogBrandId;
             RestockThreshold = restockThreshold;
             MaxStockThreshold = maxStockThreshold;
         }
 
+        /// <summary>
+        /// Nome do produto
+        /// </summary>
+        /// <example>
+        /// Leite condensado
+        /// </example>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Descrição do produto
+        /// </summary>
+        /// <example>
+        /// leite condensado é maravilhoso
+        /// </example>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Preço do produto
+        /// </summary>
+        /// <exemple>
+        /// 5.49
+        /// </exemple>
         public decimal Price { get; set; }
-        public string PictureFileName { get; set; }
+
+        /// <summary>
+        /// Id do tipo de produto
+        /// </summary>
+        /// <example>
+        /// 1
+        /// </example>
         public int CatalogTypeId { get; set; }
+
+        /// <summary>
+        /// Id da marca do produto
+        /// </summary>
+        /// <example>
+        /// 1
+        /// </example>
         public int CatalogBrandId { get; set; }
+
+        /// <summary>
+        /// Limiar de reabastecimento
+        /// </summary>
+        /// <example>
+        /// 5
+        /// </example>
         public decimal RestockThreshold { get; set; }
+
+        /// <summary>
+        /// Estoque maximo
+        /// </summary>
+        /// <example>
+        /// 35
+        /// </example>
         public decimal MaxStockThreshold { get; set; }
 
-        private void ConfiguringWorkFields()
+        /// <summary>
+        /// Configurando os campos obrigatorios
+        /// </summary>
+        private void ConfiguringTheMandatoryFields()
         {
+            //Cria uma notificação caso não atenda os criterios
             AddNotifications(new Contract()
             .Requires()
             .IsNotNullOrEmpty(Name, "CatalogItem.Name", "Este campo é obrigatório")
@@ -40,20 +107,25 @@ namespace Catalog.Core.Commands
             .IsGreaterThan(CatalogBrandId, 0, "CatalogBrand.Id", "É necessário informar um id"));
         }
 
-        private void SettingTheMaximumFieldSize()
+        /// <summary>
+        /// Configurando o tamanho maximo dos caracteres
+        /// </summary>
+        private void SettingTheMaximumCharacterSize()
         {
+            //Cria uma notificação caso não atenda os criterios
             AddNotifications(new Contract()
             .Requires()
             .HasMaxLengthIfNotNullOrEmpty(Name, 50, "CatalogItem.Name", "Tamanho 50 caracteres")
-            .HasExactLengthIfNotNullOrEmpty(Description, 120, "CatalogItem.Description", "Tamanho 120 caracteres")
-            .HasExactLengthIfNotNullOrEmpty(PictureFileName, 160, "CatalogItem.PictureFileName", "Tamanho 160 caracteres"));
+            .HasExactLengthIfNotNullOrEmpty(Description, 120, "CatalogItem.Description", "Tamanho 120 caracteres"));
         }
 
-
+        /// <summary>
+        /// Valida se foi informado nos criterios desejados 
+        /// </summary>
         public void Validate()
         {
-            SettingTheMaximumFieldSize();
-            ConfiguringWorkFields();
+            SettingTheMaximumCharacterSize();
+            ConfiguringTheMandatoryFields();
         }
     }
 }
