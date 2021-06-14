@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>catalog.api</name>
+    </assembly>
+    <members>
+        <member name="T:catalog.api.Controllers.BrandController">
+            <summary>
+            Controller referente a marcas de produtos
+            </summary>
+        </member>
+        <member name="M:catalog.api.Controllers.BrandController.CatalogBrandsAsync(Catalog.Core.Repositories.ICatalogBrandRepository,System.Int32,System.Int32)">
+            <summary>
+            Realiza uma query(consulta) com base nos parametros
+            </summary>
+            <param name="repository"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:catalog.api.Controllers.BrandController.CreateBrand(Catalog.Core.Commands.CommandAddBrand,Catalog.Core.Handlers.HandlerCatalogBrand)">
+            <summary>
+            Cria uma nova marca 
+            </summary>
+            <param name="command"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:catalog.api.Controllers.BrandController.UpdateBrand(Catalog.Core.Commands.CommandUpdateBrand,Catalog.Core.Handlers.HandlerCatalogBrand,System.Int32)">
+            <summary>
+            Atualiza uma marca de acordo com os parametros
+            </summary>
+            <param name="command"></param>
+            <param name="handler"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:catalog.api.Controllers.ItemController">
+            <summary>
+            Gerencia os fluxos de produtos
+            </summary>
+        </member>
+        <member name="M:catalog.api.Controllers.ItemController.GetItemsByIdsAsync(Catalog.Core.Repositories.ICatalogItemRepository,System.Int32,System.Int32)">
+            <summary>
+            Realiza uma query(consulta) com base nos parametros
+            </summary>
+            <param name="repository"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:catalog.api.Controllers.ItemController.CreateProduct(Catalog.Core.Commands.CommandRegisterItem,Catalog.Core.Handlers.HandlerCatalogItem)">
+            <summary>
+            Cria uma novo produto
+            </summary>
+            <param name="command"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:catalog.api.Controllers.ItemController.UpdateProduct(Catalog.Core.Commands.CommandUpdateItem,Catalog.Core.Handlers.HandlerCatalogItem,System.Int32)">
+            <summary>
+            Atualiza um produto de acordo com os parametros
+            </summary>
+            <param name="command"></param>
+            <param name="handler"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:catalog.api.Controllers.ItemController.ItemsWithNameAsync(Catalog.Core.Repositories.ICatalogItemRepository,System.String,System.Int32,System.Int32)">
+            <summary>
+            Realiza uma query(consulta) com base nos parametros
+            </summary>
+            <param name="repository"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:catalog.api.Controllers.ItemController.ItemsByTypeIdAndBrandIdAsync(Catalog.Core.Repositories.ICatalogItemRepository,System.Int32,System.Nullable{System.Int32},System.Int32,System.Int32)">
+            <summary>
+            Realiza uma query(consulta) com base nos parametros
+            </summary>
+            <param name="repository"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:catalog.api.Controllers.ItemController.ItemsByBrandIdAsync(Catalog.Core.Repositories.ICatalogItemRepository,System.Nullable{System.Int32},System.Int32,System.Int32)">
+            <summary>
+            Realiza uma query(consulta) com base nos parametros
+            </summary>
+            <param name="repository"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:catalog.api.Controllers.ItemController.ItemsByTypeIdAsync(Catalog.Core.Repositories.ICatalogItemRepository,System.Nullable{System.Int32},System.Int32,System.Int32)">
+            <summary>
+            Realiza uma query(consulta) com base nos parametros
+            </summary>
+            <param name="repository"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:catalog.api.Controllers.ItemController.AddProduct(Catalog.Core.Commands.CommandAddItem,Catalog.Core.Handlers.HandlerCatalogItem)">
+            <summary>
+            Adiciona uma nova quantidade no estoque do produto
+            </summary>
+            <param name="command"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:catalog.api.Controllers.ItemController.RemoveProduct(Catalog.Core.Commands.CommandRemoveItem,Catalog.Core.Handlers.HandlerCatalogItem)">
+            <summary>
+            Remove uma quantidade no estoque do produto
+            </summary>
+            <param name="command"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:catalog.api.Controllers.TypeController.CatalogTypesAsync(Catalog.Core.Repositories.ICatalogTypeRepository,System.Int32,System.Int32)">
+            <summary>
+            Realiza uma query(consulta) com base nos parametros
+            </summary>
+            <param name="repository"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:catalog.api.Controllers.TypeController.CreateType(Catalog.Core.Commands.CommandAddType,Catalog.Core.Handlers.HandlerCatalogType)">
+            <summary>
+            Cria uma novo tipo
+            </summary>
+            <param name="command"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:catalog.api.Controllers.TypeController.UpdateType(Catalog.Core.Commands.CommandUpdateType,Catalog.Core.Handlers.HandlerCatalogType,System.Int32)">
+            <summary>
+            Atualiza um tipo de acordo com os parametros
+            </summary>
+            <param name="command"></param>
+            <param name="handler"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
