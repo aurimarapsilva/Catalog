@@ -1,6 +1,7 @@
 using Catalog.Core.Commands.Contracts;
 using Flunt.Notifications;
 using Flunt.Validations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Catalog.Core.Commands
 {
@@ -31,6 +32,7 @@ namespace Catalog.Core.Commands
         /// <example>
         /// 1
         /// </example>
+        [Required]
         public int Id { get; set; }
 
         /// <summary>
@@ -39,6 +41,8 @@ namespace Catalog.Core.Commands
         /// <example>
         /// Italac
         /// </example>
+        [Required]
+        [MaxLength(100)]
         public string Brand { get; set; }
 
         /// <summary>

@@ -12,14 +12,26 @@ namespace Catalog.Core.Response
         /// Variavel responsavel por montar o objeto ser respondido
         /// </summary>
         private readonly T _responseObj;
-        
+        private readonly int _responseSize;
+
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="responseObj"></param>
-        public ResponseOk(T responseObj)
+        /// <param name="responseSize"></param>
+        public ResponseOk(T responseObj, int responseSize = 0)
         {
             _responseObj = responseObj;
+            _responseSize = responseSize;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public int Count()
+        {
+            return _responseSize;
         }
 
         /// <summary>

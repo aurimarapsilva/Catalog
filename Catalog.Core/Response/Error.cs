@@ -21,17 +21,19 @@
         /// <summary>
         /// Código do erro.
         /// </summary>
+        /// <example>400</example>
         public string Code { get; private set; }
-        
+
         /// <summary>
         /// Descrição do erro.
         /// </summary>
+        /// <example>Erro ao executar a função</example>
         public string Description { get; private set; }
 
         /// <summary>
         /// Dados o pq aconteceu o erro
         /// </summary>
-        public object Data { get; set; }
-
+        /// <example> </example>
+        public object Data { get; private set; }
     }
 }

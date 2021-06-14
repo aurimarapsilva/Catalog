@@ -1,6 +1,7 @@
 using Catalog.Core.Commands.Contracts;
 using Flunt.Notifications;
 using Flunt.Validations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Catalog.Core.Commands
 {
@@ -19,7 +20,6 @@ namespace Catalog.Core.Commands
         /// <param name="name">Nome do produto</param>
         /// <param name="description">descrição do produto</param>
         /// <param name="price">preço do produto</param>
-        /// <param name="pictureFileName"></param>
         /// <param name="catalogTypeId">id do tipo de produto</param>
         /// <param name="catalogBrandId">id da marca do produto </param>
         /// <param name="restockThreshold">Limiar de reabastecimento</param>
@@ -41,6 +41,8 @@ namespace Catalog.Core.Commands
         /// <example>
         /// Leite condensado
         /// </example>
+        [Required]
+        [MaxLength(50)]
         public string Name { get; set; }
 
         /// <summary>
@@ -49,14 +51,14 @@ namespace Catalog.Core.Commands
         /// <example>
         /// leite condensado é maravilhoso
         /// </example>
+        [MaxLength(120)]
         public string Description { get; set; }
 
         /// <summary>
         /// Preço do produto
         /// </summary>
-        /// <exemple>
-        /// 5.49
-        /// </exemple>
+        /// <example>5.49</example>
+        [Required]
         public decimal Price { get; set; }
 
         /// <summary>
@@ -65,6 +67,7 @@ namespace Catalog.Core.Commands
         /// <example>
         /// 1
         /// </example>
+        [Required]
         public int CatalogTypeId { get; set; }
 
         /// <summary>
@@ -73,6 +76,7 @@ namespace Catalog.Core.Commands
         /// <example>
         /// 1
         /// </example>
+        [Required]
         public int CatalogBrandId { get; set; }
 
         /// <summary>

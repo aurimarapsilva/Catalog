@@ -19,7 +19,7 @@ namespace Catalog.Core.Entities
         /// <param name="maxStockThreshold">Estoque maximo</param>
         /// <param name="pictureFileName">Nome do arquivo da imagem</param>
         /// <param name="pictureUri">Caminho da imagem</param>
-        public CatalogItem(string name, string description, decimal price, int catalogTypeId, int catalogBrandId, decimal restockThreshold = 0, decimal maxStockThreshold = 0, string pictureFileName = null, string pictureUri = null)
+        public CatalogItem(string name, string description, decimal price, int catalogTypeId, int catalogBrandId, decimal restockThreshold, decimal maxStockThreshold, string pictureFileName = null, string pictureUri = null)
         {
             Name = name;
             Description = description;
@@ -153,20 +153,27 @@ namespace Catalog.Core.Entities
         /// <returns></returns>
         public decimal RemoveStock(decimal quantityDesired)
         {
+            var original = AvailableStock;
 
+            // Valida se possui estoque do produto
             if (AvailableStock == 0)
                 throw new NotImplementedException($"Estoque vazio, item de produto {Name} está esgotado");
 
+            // Valida se a quantidade desejada é superior a 0
             if (quantityDesired <= 0)
-                throw new NotImplementedException($"As unidades de item desejadas devem ser maiores que zero");
+                throw new ArgumentException($"As unidades de item desejadas devem ser maiores que zero");
 
-            var removed = Math.Min(quantityDesired, AvailableStock);
+            // valida se a quantidade desejada e superior a quantidade do estoque
+            if (quantityDesired > AvailableStock)
+                throw new ArgumentException("Não possui a quantidade de produtos desejadas");
 
-            AvailableStock -= removed;
+            // Faz retirada da quantidade desejada
+            AvailableStock -= quantityDesired;
 
+            // registra a ultima atualização do produto
             LastUpdate = DateTime.Now;
 
-            return removed;
+            return original -  AvailableStock;
         }
 
         /// <summary>
@@ -178,16 +185,21 @@ namespace Catalog.Core.Entities
         {
             var original = AvailableStock;
 
-            // A quantidade que o cliente está tentando adicionar ao estoque é maior do que a que pode ser acomodada fisicamente no Armazém
-            if ((AvailableStock + quantity) > MaxStockThreshold)
-                // Por enquanto, este método apenas adiciona novas unidades até o limite máximo de estoque. Em uma versão expandida deste aplicativo, nós
-                // pode incluir o rastreamento das unidades restantes e armazenar informações sobre o estoque excedente em outros lugares.
-                AvailableStock += (MaxStockThreshold - AvailableStock);
-            else
-                AvailableStock += quantity;
+            // a quantidade informada deve ser maior que 0
+            if (quantity < 0)
+                throw new NotImplementedException("A quantidade informada não pode ser negativa");
 
+            // A quantidade que o cliente está tentando adicionar ao estoque é maior do que a que pode ser
+            // acomodada fisicamente no Armazém
+            if ((AvailableStock + quantity) > MaxStockThreshold)
+                throw new NotImplementedException("A quantidade informada excede o limite maximo do estoque");
+
+            AvailableStock += quantity;
+            
+            // Registra que não faz parte de um novo pedido
             OnReorder = false;
 
+            // Registra a ultima atualização no estoque
             LastUpdate = DateTime.Now;
 
             return AvailableStock - original;

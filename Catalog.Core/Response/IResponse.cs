@@ -13,6 +13,12 @@
         object ResponseObj();
 
         /// <summary>
+        /// Numero de registros na base de dados
+        /// </summary>
+        /// <returns></returns>
+        int Count();
+
+        /// <summary>
         /// Se possui erro na classe
         /// </summary>
         /// <returns></returns>

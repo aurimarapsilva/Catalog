@@ -1,6 +1,7 @@
 using Catalog.Core.Commands.Contracts;
 using Flunt.Notifications;
 using Flunt.Validations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Catalog.Core.Commands
 {
@@ -28,6 +29,8 @@ namespace Catalog.Core.Commands
         /// <example>
         /// Nestlé
         /// </example>
+        [Required]
+        [MaxLength(100)]
         public string Brand { get; set; }
 
         /// <summary>

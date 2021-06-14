@@ -35,6 +35,15 @@ namespace Catalog.Core.Response
         }
 
         /// <summary>
+        /// Numero de registros 
+        /// </summary>
+        /// <returns></returns>
+        public int Count()
+        {
+            return 0;
+        }
+
+        /// <summary>
         /// Retorna o erro
         /// </summary>
         /// <returns>

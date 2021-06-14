@@ -51,7 +51,7 @@ namespace Catalog.Core.Commands
                 //Deve se informar um id maior que 0
                 .IsGreaterThan(Id, 0, "CatalogItem.Id", "É necessário informar um id")
                 //Deve informar uma quantidade maior ou igal a 0
-                .IsGreaterOrEqualsThan(Quantity, 0, "Quantity", "A quantidade a ser inserida deve ser igual ou maior que 0 (zero)"));
+                .IsGreaterThan(Quantity, 0, "Quantity", "A quantidade a ser inserida deve ser igual ou maior que 0 (zero)"));
         }
     }
 }

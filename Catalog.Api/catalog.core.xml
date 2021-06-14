@@ -1,0 +1,1108 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>catalog.core</name>
+    </assembly>
+    <members>
+        <member name="T:Catalog.Core.Commands.CommandAddBrand">
+            <summary>
+            Esta classe cuida do comando de adicionar uma nova marca para o produto
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandAddBrand.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandAddBrand.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="brand"></param>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandAddBrand.Brand">
+            <summary>
+            Marca do produto
+            </summary>
+            <example>
+            Nestlé
+            </example>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandAddBrand.Validate">
+            <summary>
+            Valida se foi informado nos criterios desejados 
+            </summary>
+        </member>
+        <member name="T:Catalog.Core.Commands.CommandAddItem">
+            <summary>
+            Esta classe cuida do comando de adicionar um novo item ao produto ja cadastrado em sistema
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandAddItem.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandAddItem.#ctor(System.Int32,System.Decimal)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="id"></param>
+            <param name="quantity"></param>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandAddItem.Id">
+            <summary>
+            Id do produto cadastrado
+            </summary>
+            <example>
+            2
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandAddItem.Quantity">
+            <summary>
+            Quantidade que deseja adicionar no estoque
+            </summary>
+            <example>
+            1.600
+            </example>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandAddItem.Validate">
+            <summary>
+            Valida se foi informado uma quantidade nos criterios desejados 
+            </summary>
+        </member>
+        <member name="T:Catalog.Core.Commands.CommandAddType">
+            <summary>
+            Esta classe é responsável por adicionar um tipo ao produto
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandAddType.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandAddType.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="type">Informar o tipo do produto</param>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandAddType.Type">
+            <summary>
+            Tipo do produto
+            </summary>
+            <example>
+            Lata
+            </example>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandAddType.Validate">
+            <summary>
+            Valida se foi informado nos criterios desejados 
+            </summary>
+        </member>
+        <member name="T:Catalog.Core.Commands.CommandRegisterItem">
+            <summary>
+            Classe responsável por cadastrar um novo produto
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandRegisterItem.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandRegisterItem.#ctor(System.String,System.String,System.Decimal,System.Int32,System.Int32,System.Decimal,System.Decimal)">
+            <summary>
+            Contructor
+            </summary>
+            <param name="name">Nome do produto</param>
+            <param name="description">descrição do produto</param>
+            <param name="price">preço do produto</param>
+            <param name="catalogTypeId">id do tipo de produto</param>
+            <param name="catalogBrandId">id da marca do produto </param>
+            <param name="restockThreshold">Limiar de reabastecimento</param>
+            <param name="maxStockThreshold">Estoque maximo</param>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandRegisterItem.Name">
+            <summary>
+            Nome do produto
+            </summary>
+            <example>
+            Leite condensado
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandRegisterItem.Description">
+            <summary>
+            Descrição do produto
+            </summary>
+            <example>
+            leite condensado é maravilhoso
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandRegisterItem.Price">
+            <summary>
+            Preço do produto
+            </summary>
+            <example>5.49</example>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandRegisterItem.CatalogTypeId">
+            <summary>
+            Id do tipo de produto
+            </summary>
+            <example>
+            1
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandRegisterItem.CatalogBrandId">
+            <summary>
+            Id da marca do produto
+            </summary>
+            <example>
+            1
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandRegisterItem.RestockThreshold">
+            <summary>
+            Limiar de reabastecimento
+            </summary>
+            <example>
+            5
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandRegisterItem.MaxStockThreshold">
+            <summary>
+            Estoque maximo
+            </summary>
+            <example>
+            35
+            </example>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandRegisterItem.ConfiguringTheMandatoryFields">
+            <summary>
+            Configurando os campos obrigatorios
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandRegisterItem.SettingTheMaximumCharacterSize">
+            <summary>
+            Configurando o tamanho maximo dos caracteres
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandRegisterItem.Validate">
+            <summary>
+            Valida se foi informado nos criterios desejados 
+            </summary>
+        </member>
+        <member name="T:Catalog.Core.Commands.CommandRemoveItem">
+            <summary>
+            Classe responsável pelo comando de retirada de um item
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandRemoveItem.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandRemoveItem.#ctor(System.Int32,System.Decimal)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="id">Id do produto</param>
+            <param name="quantityDesired">Quantidade de itens a ser retirado do estoque</param>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandRemoveItem.Id">
+            <summary>
+            Id do produto
+            </summary>
+            <example>
+            1
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandRemoveItem.QuantityDesired">
+            <summary>
+            Quantidade desejada
+            </summary>
+            <example>
+            3.500
+            </example>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandRemoveItem.Validate">
+            <summary>
+            Valida se foi informado tudo nos criterios desejados 
+            </summary>
+        </member>
+        <member name="T:Catalog.Core.Commands.CommandUpdateBrand">
+            <summary>
+            Classe responsável por realizar a altualização da marca
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandUpdateBrand.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandUpdateBrand.#ctor(System.Int32,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="id">Id da marca</param>
+            <param name="brand">nome a qual a marca sera atualizada</param>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandUpdateBrand.Id">
+            <summary>
+            Id da marca
+            </summary>
+            <example>
+            1
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandUpdateBrand.Brand">
+            <summary>
+            Novo nome para a marca
+            </summary>
+            <example>
+            Italac
+            </example>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandUpdateBrand.Validate">
+            <summary>
+            Valida se foi informado uma marca nos criterios desejados 
+            </summary>
+        </member>
+        <member name="T:Catalog.Core.Commands.CommandUpdateItem">
+            <summary>
+            Classe responsável por atualizar os dados do produto
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandUpdateItem.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandUpdateItem.#ctor(System.Int32,System.String,System.String,System.Decimal,System.Int32,System.Int32,System.Decimal,System.Decimal)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="id">Id do produto</param>
+            <param name="name">Novo nome</param>
+            <param name="description">Nova descrição</param>
+            <param name="price">price</param>
+            <param name="catalogTypeId">Id do novo tipo</param>
+            <param name="catalogBrandId">Id da nova marca</param>
+            <param name="restockThreshold">Novo limiar de reabastecimento</param>
+            <param name="maxStockThreshold">Novo estoque maximo</param>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandUpdateItem.Id">
+            <summary>
+            Id do produto
+            </summary>
+            <example>
+            1
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandUpdateItem.Name">
+            <summary>
+            Nome do produto
+            </summary>
+            <example>
+            Leite condensado
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandUpdateItem.Description">
+            <summary>
+            Descrição do produto
+            </summary>
+            <example>
+            leite condensado é maravilhoso
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandUpdateItem.Price">
+            <summary>
+            Preço do produto
+            </summary>
+            <exemple>
+            5.49
+            </exemple>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandUpdateItem.CatalogTypeId">
+            <summary>
+            Id do tipo de produto
+            </summary>
+            <example>
+            1
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandUpdateItem.CatalogBrandId">
+            <summary>
+            Id da marca do produto
+            </summary>
+            <example>
+            1
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandUpdateItem.RestockThreshold">
+            <summary>
+            Limiar de reabastecimento
+            </summary>
+            <example>
+            5
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandUpdateItem.MaxStockThreshold">
+            <summary>
+            Estoque maximo
+            </summary>
+            <example>
+            35
+            </example>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandUpdateItem.ConfiguringWorkFields">
+            <summary>
+            Configurando os campos obrigatorios
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandUpdateItem.SettingTheMaximumFieldSize">
+            <summary>
+            Configurando o tamanho maximo dos caracteres
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandUpdateItem.Validate">
+            <summary>
+            Valida se foi informado nos criterios desejados 
+            </summary>
+        </member>
+        <member name="T:Catalog.Core.Commands.CommandUpdateType">
+            <summary>
+            Classe responsável por atualizar o tipo do pruduto
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandUpdateType.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandUpdateType.#ctor(System.Int32,System.String)">
+            <summary>
+            Contructor
+            </summary>
+            <param name="id">Id do tipo</param>
+            <param name="type">Novo nome para o tipo</param>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandUpdateType.Id">
+            <summary>
+            Id do tipo do produto
+            </summary>
+            <example>
+            1
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Commands.CommandUpdateType.Type">
+            <summary>
+            Tipo do produto
+            </summary>
+            <example>
+            Lata
+            </example>
+        </member>
+        <member name="M:Catalog.Core.Commands.CommandUpdateType.Validate">
+            <summary>
+            Valida se foi informado nos criterios desejados 
+            </summary>
+        </member>
+        <member name="T:Catalog.Core.Commands.Contracts.ICommand">
+            <summary>
+            Interface responsavel por todos os comandos de entrada da API
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Commands.Contracts.ICommand.Validate">
+            <summary>
+            Valida se o comando atendeu todos os requesitos
+            </summary>
+        </member>
+        <member name="T:Catalog.Core.Entities.CatalogBrand">
+            <summary>
+            Classe modelo marca
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Entities.CatalogBrand.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="brand"> Nome da marca</param>
+        </member>
+        <member name="P:Catalog.Core.Entities.CatalogBrand.Brand">
+            <summary>
+            Marca
+            </summary>
+            <example>
+            Nestlé
+            </example>
+        </member>
+        <member name="M:Catalog.Core.Entities.CatalogBrand.UpdateCatalogBrand(System.String)">
+            <summary>
+            Atualiza o nome da marca
+            </summary>
+            <param name="brand">novo nome para marca</param>
+        </member>
+        <member name="T:Catalog.Core.Entities.CatalogItem">
+            <summary>
+            Classe modelo para produtos
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Entities.CatalogItem.#ctor(System.String,System.String,System.Decimal,System.Int32,System.Int32,System.Decimal,System.Decimal,System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="name">Nome</param>
+            <param name="description">Descrição</param>
+            <param name="price">Price</param>
+            <param name="catalogTypeId">Id tipo</param>
+            <param name="catalogBrandId">Id Marca</param>
+            <param name="restockThreshold">Limiar de reabastecimento</param>
+            <param name="maxStockThreshold">Estoque maximo</param>
+            <param name="pictureFileName">Nome do arquivo da imagem</param>
+            <param name="pictureUri">Caminho da imagem</param>
+        </member>
+        <member name="P:Catalog.Core.Entities.CatalogItem.Name">
+            <summary>
+            Nome
+            </summary>
+            <example>
+            Leite condensado
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Entities.CatalogItem.Description">
+            <summary>
+            Descrição
+            </summary>
+            <example>
+            8ª maravilha do mundo
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Entities.CatalogItem.Price">
+            <summary>
+            preço
+            </summary>
+            <example>
+            5.49
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Entities.CatalogItem.PictureFileName">
+            <summary>
+            Nome do arquivo de foto
+            </summary>
+            <example>
+            670476.jpg
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Entities.CatalogItem.PictureUri">
+            <summary>
+            URI da imagem
+            </summary>
+            <example>
+            https://static.clubeextra.com.br/img/uploads/1/476/670476.jpg
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Entities.CatalogItem.CatalogTypeId">
+            <summary>
+            Id do tipo do produto
+            </summary>
+            <example>
+            1
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Entities.CatalogItem.CatalogType">
+            <summary>
+            Tipo do produto
+            </summary>
+        </member>
+        <member name="P:Catalog.Core.Entities.CatalogItem.CatalogBrandId">
+            <summary>
+            Id da marca do produto
+            </summary>
+            <example>
+            1
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Entities.CatalogItem.CatalogBrand">
+            <summary>
+            Marca do produto
+            </summary>
+        </member>
+        <member name="P:Catalog.Core.Entities.CatalogItem.AvailableStock">
+            <summary>
+            Quantidade em estoque
+            </summary>
+            <example>
+            40
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Entities.CatalogItem.RestockThreshold">
+            <summary>
+            Estoque disponível no qual devemos fazer um novo pedido
+            </summary>
+            <example>
+            10
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Entities.CatalogItem.MaxStockThreshold">
+            <summary>
+            Número máximo de unidades que podem estar em estoque a qualquer momento (devido a restrições físicas / logísticas nos armazéns)
+            </summary>
+            <example>
+            70
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Entities.CatalogItem.LastUpdate">
+            <summary>
+            Ultima data de Atualização
+            </summary>
+            <example>
+            2021-05-25T14:41
+            </example>
+        </member>
+        <member name="P:Catalog.Core.Entities.CatalogItem.OnReorder">
+            <summary>
+            Verdadeiro se o item estiver em novo pedido
+            </summary>
+            <example>
+            true
+            </example>
+        </member>
+        <member name="M:Catalog.Core.Entities.CatalogItem.RemoveStock(System.Decimal)">
+            <summary>
+            Diminui a quantidade de um item específico no estoque e garante que o limiar de reabastecimento não
+            foi violado. Nesse caso, uma solicitação de reabastecimento é gerado no virificar limiar.
+            
+            Se houver estoque suficiente de um item, o número inteiro retornado no final desta chamada deve ser o mesmo que quantidade Desejada.
+            Caso não haja estoque suficiente disponível, o método removerá todo o estoque disponível e retornará essa quantidade ao cliente.
+            Nesse caso, é responsabilidade do cliente determinar se o valor que é devolvido é o mesmo que quantidade Desejada.
+            É inválido passar um número negativo.
+            </summary>
+            <param name="quantityDesired">Quantidade desejada</param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Entities.CatalogItem.AddStock(System.Decimal)">
+            <summary>
+            Aumenta a quantidade de um determinado item no estoque. 
+            </summary>
+            <param name="quantity"> quantidade desejada</param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Entities.CatalogItem.UpdateCatalogItem(System.String,System.String,System.Decimal,System.Int32,System.Int32,System.Decimal,System.Decimal,System.String,System.String)">
+            <summary>
+            Atualiza os dados do item 
+            </summary>
+            <param name="name">Nome</param>
+            <param name="description">Descrição</param>
+            <param name="price">Price</param>
+            <param name="catalogTypeId">Id tipo</param>
+            <param name="catalogBrandId">Id Marca</param>
+            <param name="restockThreshold">Limiar de reabastecimento</param>
+            <param name="maxStockThreshold">Estoque maximo</param>
+            <param name="pictureFileName">Nome do arquivo da imagem</param>
+            <param name="pictureUri">Caminho da imagem</param>
+        </member>
+        <member name="M:Catalog.Core.Entities.CatalogItem.NewOrder(System.Boolean)">
+            <summary>
+            Configura o se é um novo pedido
+            </summary>
+            <param name="onReOrder"></param>
+        </member>
+        <member name="T:Catalog.Core.Entities.CatalogType">
+            <summary>
+            Classe modelo para os tipos de produtos
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Entities.CatalogType.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="type"> tipo do produto</param>
+        </member>
+        <member name="P:Catalog.Core.Entities.CatalogType.Type">
+            <summary>
+            Tipo do produto
+            </summary>
+            <example>
+            Lata
+            </example>
+        </member>
+        <member name="M:Catalog.Core.Entities.CatalogType.UpdateCatalogType(System.String)">
+            <summary>
+            Atualização do tipo de produto
+            </summary>
+            <param name="type">novo moen para o tipo</param>
+        </member>
+        <member name="T:Catalog.Core.Entities.IEntity">
+            <summary>
+            Interface para entidades
+            </summary>
+        </member>
+        <member name="T:Catalog.Core.Entities.Entity">
+            <summary>
+            Classe modelo que cuida do id da entidade 
+            </summary>
+        </member>
+        <member name="P:Catalog.Core.Entities.Entity.Id">
+            <summary>
+            Id das classe modelos
+            </summary>
+            <example>
+            1
+            </example>
+        </member>
+        <member name="T:Catalog.Core.Handlers.Contracts.IHandler`1">
+            <summary>
+            Interface responsáveis pelo manipuladores dos comandos recebidos
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Catalog.Core.Handlers.Contracts.IHandler`1.handle(`0)">
+            <summary>
+            Retorna se teve sucesso na solicitação ou não
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Catalog.Core.Handlers.HandlerCatalogBrand">
+            <summary>
+            Manipuladora dos comandos recebidos sobre marca
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Handlers.HandlerCatalogBrand.#ctor(Catalog.Core.Repositories.ICatalogBrandRepository)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="repository"></param>
+        </member>
+        <member name="F:Catalog.Core.Handlers.HandlerCatalogBrand._repository">
+            <summary>
+            Varivael repositorio
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Handlers.HandlerCatalogBrand.handle(Catalog.Core.Commands.CommandAddBrand)">
+            <summary>
+            Método responsável por manipular o comando de adicionar uma marca
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Handlers.HandlerCatalogBrand.handle(Catalog.Core.Commands.CommandUpdateBrand)">
+            <summary>
+            Método responsável por manipular o comando de alterar uma marca
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Catalog.Core.Handlers.HandlerCatalogItem">
+            <summary>
+            Classe manipuladora dos comandos realizados por parte dos produtos
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Handlers.HandlerCatalogItem.#ctor(Catalog.Core.Repositories.ICatalogItemRepository)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="repository"></param>
+        </member>
+        <member name="M:Catalog.Core.Handlers.HandlerCatalogItem.handle(Catalog.Core.Commands.CommandAddItem)">
+            <summary>
+            Manipulador do comando para adicionar um item no estoque
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Handlers.HandlerCatalogItem.handle(Catalog.Core.Commands.CommandRegisterItem)">
+            <summary>
+            Manipulador do comando que registra um novo produto no banco de dados
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Handlers.HandlerCatalogItem.handle(Catalog.Core.Commands.CommandRemoveItem)">
+            <summary>
+            Manipulador do comando que remove um item do estoque
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Catalog.Core.Handlers.HandlerCatalogType">
+            <summary>
+            Manipulador dos comandos de tipo de produtos
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Handlers.HandlerCatalogType.#ctor(Catalog.Core.Repositories.ICatalogTypeRepository)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="repository"></param>
+        </member>
+        <member name="M:Catalog.Core.Handlers.HandlerCatalogType.handle(Catalog.Core.Commands.CommandAddType)">
+            <summary>
+            Método responsável por manipular a adição uma tipo ao repositorio
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Handlers.HandlerCatalogType.handle(Catalog.Core.Commands.CommandUpdateType)">
+            <summary>
+            Método responsável por manipular a Atualização de um tipo de produto
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Catalog.Core.Queries.CatalogBrandQuery">
+            <summary>
+            Expressões de consulta de marcas
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Queries.CatalogBrandQuery.GetByBrandId(System.Int32)">
+            <summary>
+            obtem uma marca pelo id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Catalog.Core.Queries.CatalogItemQuery">
+            <summary>
+            Expressões para consulta de produtos
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Queries.CatalogItemQuery.GetById(System.Int32)">
+            <summary>
+            Obtem um produto com mesmo id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Queries.CatalogItemQuery.GetByName(System.String)">
+            <summary>
+            Obtem um ou mais produtos com mesmo nome
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Queries.CatalogItemQuery.GetByCatalogBrandId(System.Int32)">
+            <summary>
+            Obtem um ou mais produtos com mesma marca
+            </summary>
+            <param name="catalogBrandId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Queries.CatalogItemQuery.GetByCatalogTypeId(System.Int32)">
+            <summary>
+            Obtem um ou mais produtos com mesmo tipo 
+            </summary>
+            <param name="catalogTypeId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Catalog.Core.Queries.CatalogTypeQuery">
+            <summary>
+            Expressões de consulta de um Tipo de produto
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Queries.CatalogTypeQuery.GetById(System.Int32)">
+            <summary>
+            Retorna um ou mais tipo de produto conforme o id mencionado
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Catalog.Core.Repositories.ICatalogBrandRepository">
+            <summary>
+            Interface de repositorio de marcas de produtos
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Repositories.ICatalogBrandRepository.CreateBrandAsync(Catalog.Core.Entities.CatalogBrand)">
+            <summary>
+            Cria uma nova marca na base de dados
+            </summary>
+            <param name="brand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Repositories.ICatalogBrandRepository.UpdateBrandAsync(Catalog.Core.Entities.CatalogBrand)">
+            <summary>
+            Atualiza uma marca na base de dados
+            </summary>
+            <param name="brand"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Repositories.ICatalogBrandRepository.CatalogBrandsAsync(System.Int32,System.Int32)">
+            <summary>
+            Retorna uma lista de marcas cadastradas na base
+            </summary>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Repositories.ICatalogBrandRepository.CatalogBrandIdAsync(System.Int32)">
+            <summary>
+            Retirna uma marca referente ao id informado
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Catalog.Core.Repositories.ICatalogItemRepository">
+            <summary>
+            Interfface de repositorio de produtos
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Repositories.ICatalogItemRepository.CreateProductAsync(Catalog.Core.Entities.CatalogItem)">
+            <summary>
+            Cria um novo produto na base de dados
+            </summary>
+            <param name="product"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Repositories.ICatalogItemRepository.UpdateProductAsync(Catalog.Core.Entities.CatalogItem,System.Boolean)">
+            <summary>
+            Atualiza as informações do produtos na base de dados
+            </summary>
+            <param name="product"></param>
+            <param name="raiseProductPriceChangedEvent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Repositories.ICatalogItemRepository.GetItemsByIdsAsync(System.Int32,System.Int32)">
+            <summary>
+            Retorna uma lista de produtos
+            </summary>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Repositories.ICatalogItemRepository.ItemByIdAsync(System.Int32)">
+            <summary>
+            Retorna um produto da base de dados conforme o id informado
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Repositories.ICatalogItemRepository.ItemsWithNameAsync(System.String,System.Int32,System.Int32)">
+            <summary>
+            Retorna um produto da base de dados conforme o nome informado
+            </summary>
+            <param name="name"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Repositories.ICatalogItemRepository.ItemsByTypeIdAndBrandIdAsync(System.Int32,System.Nullable{System.Int32},System.Int32,System.Int32)">
+            <summary>
+            Retorna um produto da base de dados conforme a marca e tipo informado
+            </summary>
+            <param name="catalogTypeId"></param>
+            <param name="catalogBrandId"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Repositories.ICatalogItemRepository.ItemsByBrandIdAsync(System.Nullable{System.Int32},System.Int32,System.Int32)">
+            <summary>
+            Retorna um produto da base de dados conforme a marca informado
+            </summary>
+            <param name="catalogBrandId"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Repositories.ICatalogItemRepository.ItemsByTypeIdAsync(System.Nullable{System.Int32},System.Int32,System.Int32)">
+            <summary>
+            Retorna um produto da base de dados conforme o tipo informado
+            </summary>
+            <param name="catalogTypeId"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Catalog.Core.Repositories.ICatalogTypeRepository">
+            <summary>
+            Interface responsável pelo repositorio do tipo de produto
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Repositories.ICatalogTypeRepository.CreateTypeAsync(Catalog.Core.Entities.CatalogType)">
+            <summary>
+            Cria um novo tipo de produto no repositorio
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Repositories.ICatalogTypeRepository.UpdateTypeAsync(Catalog.Core.Entities.CatalogType)">
+            <summary>
+            Atualiza o tipo de produto
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Repositories.ICatalogTypeRepository.CatalogTypesAsync(System.Int32,System.Int32)">
+            <summary>
+            Retorna uma lista de tipos de produtos
+            </summary>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Repositories.ICatalogTypeRepository.CatalogTypeById(System.Int32)">
+            <summary>
+            Retorna um tipo expecifico conforme o di informado
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Catalog.Core.Response.Error">
+            <summary>
+            Classe responsavel pelo os erros
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Response.Error.#ctor(System.String,System.String,System.Object)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="code"></param>
+            <param name="description"></param>
+            <param name="data"></param>
+        </member>
+        <member name="P:Catalog.Core.Response.Error.Code">
+            <summary>
+            Código do erro.
+            </summary>
+            <example>400</example>
+        </member>
+        <member name="P:Catalog.Core.Response.Error.Description">
+            <summary>
+            Descrição do erro.
+            </summary>
+            <example>Erro ao executar a função</example>
+        </member>
+        <member name="P:Catalog.Core.Response.Error.Data">
+            <summary>
+            Dados o pq aconteceu o erro
+            </summary>
+            <example> </example>
+        </member>
+        <member name="T:Catalog.Core.Response.IResponse">
+            <summary>
+            Interface para quaisquer tipo de resposta
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Catalog.Core.Response.IResponse.ResponseObj">
+            <summary>
+            Objeto a ser respondido
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Response.IResponse.Count">
+            <summary>
+            Numero de registros na base de dados
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Response.IResponse.HasError">
+            <summary>
+            Se possui erro na classe
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Response.IResponse.Error">
+            <summary>
+            Erro a ser respondido
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Catalog.Core.Response.ResponseError`1">
+            <summary>
+            Classe responsavel por criar e exibir os erros
+            </summary>
+        </member>
+        <member name="F:Catalog.Core.Response.ResponseError`1._error">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Response.ResponseError`1.#ctor(Catalog.Core.Response.Error)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="error"></param>
+        </member>
+        <member name="M:Catalog.Core.Response.ResponseError`1.#ctor(System.String,System.String,System.Object)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="errorCode">400</param>
+            <param name="description">Erro ao consultar a base de dados</param>
+            <param name="data"></param>
+        </member>
+        <member name="M:Catalog.Core.Response.ResponseError`1.Count">
+            <summary>
+            Numero de registros 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Response.ResponseError`1.Error">
+            <summary>
+            Retorna o erro
+            </summary>
+            <returns>
+            {
+              Code = 400,
+              Description = Erro ao consultar a base de dados,
+              Data = null
+            }
+            </returns>
+        </member>
+        <member name="M:Catalog.Core.Response.ResponseError`1.HasError">
+            <summary>
+            Informa o hasError que contem erro
+            </summary>
+            <returns>true</returns>
+        </member>
+        <member name="M:Catalog.Core.Response.ResponseError`1.ResponseObj">
+            <summary>
+            Retorna uma notificação que não a objeto a ser respondido
+            </summary>
+            <returns>Objeto não retornado porquê o Response contém erro.</returns>
+        </member>
+        <member name="T:Catalog.Core.Response.ResponseOk`1">
+            <summary>
+            Esta é chamada caso o processo ocorra tudo de acordo
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:Catalog.Core.Response.ResponseOk`1._responseObj">
+            <summary>
+            Variavel responsavel por montar o objeto ser respondido
+            </summary>
+        </member>
+        <member name="M:Catalog.Core.Response.ResponseOk`1.#ctor(`0,System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="responseObj"></param>
+            <param name="responseSize"></param>
+        </member>
+        <member name="M:Catalog.Core.Response.ResponseOk`1.Count">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Response.ResponseOk`1.Error">
+            <summary>
+            Retornara nulo uma vez que não apresenta erro
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Catalog.Core.Response.ResponseOk`1.HasError">
+            <summary>
+            Exibe se existe erro na classe
+            </summary>
+            <returns>false</returns>
+        </member>
+        <member name="M:Catalog.Core.Response.ResponseOk`1.ResponseObj">
+            <summary>
+            Exibe o objeto que deve ser respondido
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

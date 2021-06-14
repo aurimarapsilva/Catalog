@@ -1,6 +1,7 @@
 using Catalog.Core.Commands.Contracts;
 using Flunt.Notifications;
 using Flunt.Validations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Catalog.Core.Commands
 {
@@ -43,6 +44,7 @@ namespace Catalog.Core.Commands
         /// <example>
         /// 1
         /// </example>
+        [Required]
         public int Id { get; set; }
 
         /// <summary>
@@ -51,6 +53,8 @@ namespace Catalog.Core.Commands
         /// <example>
         /// Leite condensado
         /// </example>
+        [Required]
+        [MaxLength(50)]
         public string Name { get; set; }
 
         /// <summary>
@@ -59,6 +63,7 @@ namespace Catalog.Core.Commands
         /// <example>
         /// leite condensado é maravilhoso
         /// </example>
+        [MaxLength(120)] 
         public string Description { get; set; }
 
         /// <summary>
@@ -67,6 +72,7 @@ namespace Catalog.Core.Commands
         /// <exemple>
         /// 5.49
         /// </exemple>
+        [Required]
         public decimal Price { get; set; }
 
         /// <summary>
@@ -75,6 +81,7 @@ namespace Catalog.Core.Commands
         /// <example>
         /// 1
         /// </example>
+        [Required]
         public int CatalogTypeId { get; set; }
 
         /// <summary>
@@ -83,6 +90,7 @@ namespace Catalog.Core.Commands
         /// <example>
         /// 1
         /// </example>
+        [Required]
         public int CatalogBrandId { get; set; }
 
         /// <summary>
