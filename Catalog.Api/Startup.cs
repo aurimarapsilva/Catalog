@@ -1,9 +1,13 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using catalog.infra.DataContext;
+using catalog.infra.Repositories;
+using Catalog.Core.Handlers;
+using Catalog.Core.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,22 +30,22 @@ namespace catalog.api
             services.AddControllers();
 
             services.AddResponseCompression();
-            /*
-                        // Configura injeção de dependencia do banco de dados na aplicação
-                        services.AddDbContext<StoreDataContext>(x =>
-                            x.UseSqlServer(Configuration.GetConnectionString("conn"))
-                        );
 
-                        // Configura as dependencias dos manipuladores
-                        services.AddTransient<HandlerCatalogBrand, HandlerCatalogBrand>();
-                        services.AddTransient<HandlerCatalogItem, HandlerCatalogItem>();
-                        services.AddTransient<HandlerCatalogType, HandlerCatalogType>();
+            // Configura injeção de dependencia do banco de dados na aplicação
+            services.AddDbContext<StoreDataContext>(x =>
+                x.UseSqlServer(Configuration.GetConnectionString("conn"))
+            );
 
-                        // Configura as dependencias dos repositorios
-                        services.AddTransient<ICatalogBrandRepository, CatalogBrandRepository>();
-                        services.AddTransient<ICatalogItemRepository, CatalogItemRepository>();
-                        services.AddTransient<ICatalogTypeRepository, CatalogTypeRepository>();
-            */
+            // Configura as dependencias dos manipuladores
+            services.AddTransient<HandlerCatalogBrand, HandlerCatalogBrand>();
+            services.AddTransient<HandlerCatalogItem, HandlerCatalogItem>();
+            services.AddTransient<HandlerCatalogType, HandlerCatalogType>();
+
+            // Configura as dependencias dos repositorios
+            services.AddTransient<ICatalogBrandRepository, CatalogBrandRepository>();
+            services.AddTransient<ICatalogItemRepository, CatalogItemRepository>();
+            services.AddTransient<ICatalogTypeRepository, CatalogTypeRepository>();
+
             services.AddSwaggerGen(x =>
             {
                 x.SwaggerDoc("v1", new OpenApiInfo
@@ -49,7 +53,6 @@ namespace catalog.api
                     Version = "v1",
                     Title = "Catalog Service",
                     Description = "Service responsible for product registration and inventory control",
-                    //    TermsOfService = new Uri("https://example.com/terms"),
                     Contact = new OpenApiContact
                     {
                         Name = "Victor Hernandes",
