@@ -36,15 +36,15 @@ namespace catalog.api
                 x.UseSqlServer(Configuration.GetConnectionString("conn"))
             );
 
-            // Configura as dependencias dos manipuladores
-            services.AddTransient<HandlerCatalogBrand, HandlerCatalogBrand>();
-            services.AddTransient<HandlerCatalogItem, HandlerCatalogItem>();
-            services.AddTransient<HandlerCatalogType, HandlerCatalogType>();
+            //// Configura as dependencias dos manipuladores
+            //services.AddTransient<HandlerCatalogBrand, HandlerCatalogBrand>();
+            //services.AddTransient<HandlerCatalogItem, HandlerCatalogItem>();
+            //services.AddTransient<HandlerCatalogType, HandlerCatalogType>();
 
-            // Configura as dependencias dos repositorios
-            services.AddTransient<ICatalogBrandRepository, CatalogBrandRepository>();
-            services.AddTransient<ICatalogItemRepository, CatalogItemRepository>();
-            services.AddTransient<ICatalogTypeRepository, CatalogTypeRepository>();
+            //// Configura as dependencias dos repositorios
+            //services.AddTransient<ICatalogBrandRepository, CatalogBrandRepository>();
+            //services.AddTransient<ICatalogItemRepository, CatalogItemRepository>();
+            //services.AddTransient<ICatalogTypeRepository, CatalogTypeRepository>();
 
             services.AddSwaggerGen(x =>
             {
