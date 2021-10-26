@@ -54,7 +54,7 @@ namespace Catalog.Core.Commands
             AddNotifications(new Contract()
             .Requires()
             .IsNotNullOrEmpty(Brand, "CatalogBrand.Brand", "É necessário informar uma marca")
-            .IsGreaterThan(Id, 0, "CatalogBrand.Id", "É necessário informar um id")
+            .IsGreaterOrEqualsThan(Id, 0, "CatalogBrand.Id", "É necessário informar um id")
             .HasMaxLengthIfNotNullOrEmpty(Brand, 100, "CatalogBrand.Brand", "Tamanho 100 caracteres"));
         }
     }

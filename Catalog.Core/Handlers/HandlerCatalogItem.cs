@@ -53,12 +53,24 @@ namespace Catalog.Core.Handlers
                 );
 
             // faz a adição do novo item ao estoque e valida se houve sucesso
-            if (command.Quantity != item.AddStock(quantity: command.Quantity))
+            try
+            {
+                if (command.Quantity != item.AddStock(quantity: command.Quantity))
+                    return new ResponseError<CommandAddItem>(
+                        errorCode: "400",
+                        description: "Não foi possível prosseguir com a solicitação, verificar a quantidade de itens que o estoque pode receber, e o que ja tem cadastrado",
+                        data: null
+                    );
+            }
+            catch(Exception e)
+            {
                 return new ResponseError<CommandAddItem>(
                     errorCode: "400",
                     description: "Não foi possível prosseguir com a solicitação, verificar a quantidade de itens que o estoque pode receber, e o que ja tem cadastrado",
-                    data: null
+                    data: e.Message
                 );
+            }
+            
 
             // faz a persistencia dos dados no banco de dados e retorna false caso apresentar algum erro
             if (!_repository.UpdateProductAsync(product: item))
