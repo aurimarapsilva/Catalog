@@ -1,10 +1,11 @@
 ﻿using catalog.infra.DataContext;
 using Catalog.Core.Entities;
+using Catalog.Core.Queries;
 using Catalog.Core.Repositories;
 using Catalog.Core.Response;
-using Newtonsoft.Json;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace catalog.infra.Repositories
@@ -15,102 +16,46 @@ namespace catalog.infra.Repositories
     /// </summary>
     public class CatalogBrandRepository : ICatalogBrandRepository
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="database"></param>
-        public CatalogBrandRepository(DatabaseComunicator database)
-        {
-            _database = database;
-        }
+        private StoreDataContext _context;
+        public CatalogBrandRepository(StoreDataContext context) => _context = context;
 
-        private readonly DatabaseComunicator _database;
 
-        /// <summary>
-        /// Recupera uma marca de produto conforme o id 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public async Task<CatalogBrand> CatalogBrandIdAsync(int id)
-        {
-            var parameterProc = new Dictionary<string, object>();
-            parameterProc.Add("@id", id);
+        public async Task<CatalogBrand> CatalogBrandIdAsync(int id) => await _context.Brand.AsNoTracking().FirstOrDefaultAsync(CatalogBrandQuery.GetByBrandId(id));
+    
 
-            var response = _database.GetResponse("pr_locate_brand", parameterProc);
-
-            if (string.IsNullOrEmpty(response))
-                return null;
-
-            return JsonConvert.DeserializeObject<CatalogBrand>(response);
-        }
-
-        /// <summary>
-        /// Lista todas as marcas conforme paginação
-        /// </summary>
-        /// <param name="pageSize"></param>
-        /// <param name="pageIndex"></param>
-        /// <returns></returns>
         public async Task<IResponse> CatalogBrandsAsync(int pageSize = 10, int pageIndex = 0)
         {
-            var parameterProc = new Dictionary<string, object>();
-            parameterProc.Add("@pageSize", pageSize);
-            parameterProc.Add("@pageIndex", pageIndex);
+            int pagination = pageIndex > 1 ? (pageIndex - 1) * pageSize : 0;
 
-            var response = _database.GetResponse("pr_brand_sel", parameterProc);
+            IEnumerable<CatalogBrand> consult = await _context.Brand.AsNoTracking().Skip(pagination).Take(pageSize).ToListAsync();
 
-            if (string.IsNullOrEmpty(response))
-                return new ResponseError<IEnumerable<CatalogBrand>>(
-                    errorCode: "404",
-                    description: "Não foi possível prosseguir com a solicitação",
-                    data: "Nenhum item encontrado"
-                );
+            if (consult.Count() != 0)
+                return new ResponseOk<IEnumerable<CatalogBrand>>(consult);
 
-            var convertJson = JsonConvert.DeserializeObject<IEnumerable<CatalogBrand>>(response);
-
-            return new ResponseOk<IEnumerable<CatalogBrand>>(convertJson);
+            return new ResponseError<IEnumerable<CatalogBrand>>(new Error("404","Not Found",null));
         }
 
-        /// <summary>
-        /// Cria uma nova marca no repositorio
-        /// </summary>
-        /// <param name="brand"></param>
-        /// <returns></returns>
         public bool CreateBrandAsync(CatalogBrand brand)
         {
-            var parameterProc = new Dictionary<string, object>();
-            parameterProc.Add("@brand", brand.Brand);
-
-            try
-            {
-                _database.GetResponse("pr_create_brand", parameterProc);
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.Error.Write($"Erro: {e}");
-                return false;
-            }
+            _context.Entry<CatalogBrand>(brand).State = EntityState.Added;
+            return SaveData();
         }
 
-        /// <summary>
-        /// Atualiza uma marca de produto no repositorio
-        /// </summary>
-        /// <param name="brand"></param>
-        /// <returns></returns>
         public bool UpdateBrandAsync(CatalogBrand brand)
         {
-            var parameterProc = new Dictionary<string, object>();
-            parameterProc.Add("@id", brand.Id);
-            parameterProc.Add("@brand", brand.Brand);
+            _context.Entry<CatalogBrand>(brand).State = EntityState.Modified;
+            return SaveData();
+        }
 
+        private bool SaveData()
+        {
             try
             {
-                _database.GetResponse("pr_update_brand", parameterProc);
+                _context.SaveChanges();
                 return true;
             }
-            catch (Exception e)
+            catch
             {
-                Console.Error.Write($"Erro: {e}");
                 return false;
             }
         }

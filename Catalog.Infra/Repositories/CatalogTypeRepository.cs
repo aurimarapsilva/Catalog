@@ -1,11 +1,13 @@
-﻿using catalog.infra.DataContext;
-using Catalog.Core.Entities;
+﻿using Catalog.Core.Entities;
 using Catalog.Core.Repositories;
 using Catalog.Core.Response;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Catalog.Core.Queries;
+using catalog.infra.DataContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace catalog.infra.Repositories
 {
@@ -14,88 +16,46 @@ namespace catalog.infra.Repositories
     /// </summary>
     public class CatalogTypeRepository : ICatalogTypeRepository
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="database"></param>
-        public CatalogTypeRepository(DatabaseComunicator database)
-        {
-            _database = database;
-        }
+        private StoreDataContext _context;
 
-        private readonly DatabaseComunicator _database;
+        public CatalogTypeRepository(StoreDataContext context) => _context = context;
 
-        /// <summary>
-        /// Realiza uma query(consulta) com base nos parametros
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public async Task<CatalogType> CatalogTypeById(int id)
-        {
-            var parameterProc = new Dictionary<string, object>();
-            parameterProc.Add("@id", id);
+        public async Task<CatalogType> CatalogTypeById(int id) =>
+            await _context.Type.AsNoTracking().FirstOrDefaultAsync(CatalogTypeQuery.GetById(id));
 
-            return JsonConvert.DeserializeObject<CatalogType>(_database.GetResponse("pr_locate_type_id_sel", parameterProc));
-        }
-
-        /// <summary>
-        /// Realiza uma query(consulta) com base nos parametros
-        /// </summary>
-        /// <param name="pageSize"></param>
-        /// <param name="pageIndex"></param>
-        /// <returns></returns>
         public async Task<IResponse> CatalogTypesAsync(int pageSize = 10, int pageIndex = 0)
         {
-            var parameterProc = new Dictionary<string, object>();
-            parameterProc.Add("@pageSize", pageSize);
-            parameterProc.Add("@pageIndex", pageIndex);
+            int pagination = pageIndex > 1 ? (pageIndex - 1) * pageSize : 0;
 
-            var response = JsonConvert.DeserializeObject<IList<CatalogType>>(_database.GetResponse("pr_locate_type_sel", parameterProc));
+            IEnumerable<CatalogType> consult = await _context.Type.AsNoTracking().Skip(pagination).Take(pageSize).ToListAsync();
 
-            return new ResponseOk<IList<CatalogType>>(response, response.Count);
+            if (consult.Count() > 1)
+                return new ResponseOk<IEnumerable<CatalogType>>(consult);
+
+            return new ResponseError<IEnumerable<CatalogType>>(new Error("404", "Not Found", null));
         }
 
-        /// <summary>
-        /// Cria um tipo de produto na base de dados
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
         public bool CreateTypeAsync(CatalogType type)
         {
-            var parameterProc = new Dictionary<string, object>();
-            parameterProc.Add("@type", type.Type);
-
-            try
-            {
-                _database.GetResponse("pr_create_type_sel", parameterProc);
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.Error.Write($"Erro: {e}");
-                return false;
-            }
+            _context.Entry<CatalogType>(type).State = EntityState.Added;
+            return SaveData();
         }
 
-        /// <summary>
-        /// Atualiza um tipo de produto na base de dados
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
         public bool UpdateTypeAsync(CatalogType type)
         {
-            var parameterProc = new Dictionary<string, object>();
-            parameterProc.Add("@id", type.Id);
-            parameterProc.Add("@type", type.Type);
+            _context.Entry<CatalogType>(type).State = EntityState.Modified;
+            return SaveData();
+        }
 
+        private bool SaveData()
+        {
             try
             {
-                _database.GetResponse("pr_update_type_sel", parameterProc);
+                _context.SaveChanges();
                 return true;
             }
-            catch (Exception e)
+            catch
             {
-                Console.Error.Write($"Erro: {e}");
                 return false;
             }
         }
