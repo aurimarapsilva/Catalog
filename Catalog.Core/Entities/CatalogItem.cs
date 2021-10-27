@@ -17,15 +17,11 @@ namespace Catalog.Core.Entities
         /// <param name="catalogBrandId">Id Marca</param>
         /// <param name="restockThreshold">Limiar de reabastecimento</param>
         /// <param name="maxStockThreshold">Estoque maximo</param>
-        /// <param name="pictureFileName">Nome do arquivo da imagem</param>
-        /// <param name="pictureUri">Caminho da imagem</param>
-        public CatalogItem(string name, string description, decimal price, int catalogTypeId, int catalogBrandId, decimal restockThreshold, decimal maxStockThreshold, string pictureFileName = null, string pictureUri = null)
+        public CatalogItem(string name, string description, decimal price, int catalogTypeId, int catalogBrandId, decimal restockThreshold, decimal maxStockThreshold)
         {
             Name = name;
             Description = description;
             Price = price;
-            PictureFileName = pictureFileName;
-            PictureUri = pictureUri;
             CatalogTypeId = catalogTypeId;
             CatalogBrandId = catalogBrandId;
             AvailableStock = 0;
@@ -57,23 +53,7 @@ namespace Catalog.Core.Entities
         /// 5.49
         /// </example>
         public decimal Price { get; private set; }
-
-        /// <summary>
-        /// Nome do arquivo de foto
-        /// </summary>
-        /// <example>
-        /// 670476.jpg
-        /// </example>
-        public string PictureFileName { get; private set; }
-
-        /// <summary>
-        /// URI da imagem
-        /// </summary>
-        /// <example>
-        /// https://static.clubeextra.com.br/img/uploads/1/476/670476.jpg
-        /// </example>
-        public string PictureUri { get; set; }
-
+        
         /// <summary>
         /// Id do tipo do produto
         /// </summary>
@@ -131,15 +111,7 @@ namespace Catalog.Core.Entities
         /// 2021-05-25T14:41
         /// </example>
         public DateTime LastUpdate { get; private set; }
-
-        /// <summary>
-        /// Verdadeiro se o item estiver em novo pedido
-        /// </summary>
-        /// <example>
-        /// true
-        /// </example>
-        public bool OnReorder { get; private set; }
-
+        
         /// <summary>
         /// Diminui a quantidade de um item específico no estoque e garante que o limiar de reabastecimento não
         /// foi violado. Nesse caso, uma solicitação de reabastecimento é gerado no virificar limiar.
@@ -196,9 +168,6 @@ namespace Catalog.Core.Entities
 
             AvailableStock += quantity;
             
-            // Registra que não faz parte de um novo pedido
-            OnReorder = false;
-
             // Registra a ultima atualização no estoque
             LastUpdate = DateTime.Now;
 
@@ -215,15 +184,11 @@ namespace Catalog.Core.Entities
         /// <param name="catalogBrandId">Id Marca</param>
         /// <param name="restockThreshold">Limiar de reabastecimento</param>
         /// <param name="maxStockThreshold">Estoque maximo</param>
-        /// <param name="pictureFileName">Nome do arquivo da imagem</param>
-        /// <param name="pictureUri">Caminho da imagem</param>
-        public void UpdateCatalogItem(string name, string description, decimal price, int catalogTypeId, int catalogBrandId, decimal restockThreshold, decimal maxStockThreshold, string pictureFileName = null, string pictureUri = null)
+        public void UpdateCatalogItem(string name, string description, decimal price, int catalogTypeId, int catalogBrandId, decimal restockThreshold, decimal maxStockThreshold)
         {
             Name = name;
             Description = description;
             Price = price;
-            PictureFileName = pictureFileName;
-            PictureUri = pictureUri;
             CatalogTypeId = catalogTypeId;
             CatalogBrandId = catalogBrandId;
             AvailableStock = 0;
@@ -231,14 +196,6 @@ namespace Catalog.Core.Entities
             MaxStockThreshold = maxStockThreshold;
             LastUpdate = DateTime.Now;
         }
-
-        /// <summary>
-        /// Configura o se é um novo pedido
-        /// </summary>
-        /// <param name="onReOrder"></param>
-        public void NewOrder(bool onReOrder)
-        {
-            OnReorder = onReOrder;
-        }
+        
     }
 }

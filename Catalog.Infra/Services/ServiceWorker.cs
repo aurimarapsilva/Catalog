@@ -12,122 +12,135 @@ namespace catalog.infra.Services
 {
     public class ServiceWorker : IServiceWorker
     {
+        public IResponse BeginTransaction(string msg)
+        {
+            var typeTransaction = Message.FindValue(msg, "TipoTransacao");
 
+            if(string.IsNullOrEmpty(typeTransaction))
+                return null;
+
+            switch (typeTransaction.ToUpper())
+            {
+                case "ADDBRAND":
+                    return AddBrand(msg);
+                case "ADDITEM":
+                    return AddItem(msg);
+                case "ADDTYPE":
+                    return AddType(msg);
+                case "REGISTERITEM":
+                    return RegisterItem(msg);
+                case "REMOVEITEM":
+                    return RemoveItem(msg);
+                case "UPDATEBRAND":
+                    return UpdateBrand(msg);
+                case "UPDATEITEM":
+                    return UpdateItem(msg);
+                case "UPDATETYPE":
+                    return UpdateType(msg);
+                default:
+                    return null;
+            }
+        }
+        
         public IResponse AddBrand(string msg)
         {
-            StoreDataContext dataContext = new StoreDataContext();
-            DatabaseComunicator comunicador = new DatabaseComunicator(dataContext);
-            ICatalogBrandRepository repository = new CatalogBrandRepository(comunicador);
             CommandAddBrand command = new CommandAddBrand(
-                brand: TratarMenssagem.RecuperarValor(msg, "brand")
+                brand: Message.FindValue(msg, "Brand")
                 );
-            IHandler<CommandAddBrand> handler = new HandlerCatalogBrand(repository);
-
+            IHandler<CommandAddBrand> handler = new HandlerCatalogBrand(BrandRepository());
             return handler.handle(command);
         }
 
         public IResponse AddItem(string msg)
         {
-            StoreDataContext dataContext = new StoreDataContext();
-            DatabaseComunicator comunicador = new DatabaseComunicator(dataContext);
-            ICatalogItemRepository repository = new CatalogItemRepository(comunicador);
             CommandAddItem command = new CommandAddItem(
-                id: Convert.ToInt32(TratarMenssagem.RecuperarValor(msg, "id")), 
-                quantity: Convert.ToDecimal(TratarMenssagem.RecuperarValor(msg, "quantity"))
+                id: Convert.ToInt32(Message.FindValue(msg, "ProductId")),
+                quantity: Convert.ToDecimal(Message.FindValue(msg, "Quantity"))
                 );
-            IHandler<CommandAddItem> handler = new HandlerCatalogItem(repository);
+            IHandler<CommandAddItem> handler = new HandlerCatalogItem(ItemRepository());
 
             return handler.handle(command);
         }
 
         public IResponse AddType(string msg)
         {
-            StoreDataContext dataContext = new StoreDataContext();
-            DatabaseComunicator comunicador = new DatabaseComunicator(dataContext);
-            ICatalogTypeRepository repository = new CatalogTypeRepository(comunicador);
             CommandAddType command = new CommandAddType(
-                type: TratarMenssagem.RecuperarValor(msg, "type")
+                type: Message.FindValue(msg, "Type")
                 );
-            IHandler<CommandAddType> handler = new HandlerCatalogType(repository);
+            IHandler<CommandAddType> handler = new HandlerCatalogType(TypeRepository());
 
             return handler.handle(command);
         }
+
         public IResponse RegisterItem(string msg)
         {
-            StoreDataContext dataContext = new StoreDataContext();
-            DatabaseComunicator comunicador = new DatabaseComunicator(dataContext);
-            ICatalogItemRepository repository = new CatalogItemRepository(comunicador);
             CommandRegisterItem command = new CommandRegisterItem(
-                name: TratarMenssagem.RecuperarValor(msg, "name"),
-                description: TratarMenssagem.RecuperarValor(msg, "description"),
-                price: Convert.ToDecimal(TratarMenssagem.RecuperarValor(msg, "price")),
-                catalogTypeId: Convert.ToInt32(TratarMenssagem.RecuperarValor(msg, "catalogTypeId")),
-                catalogBrandId: Convert.ToInt32(TratarMenssagem.RecuperarValor(msg, "catalogBrandId")),
-                restockThreshold: Convert.ToInt32(TratarMenssagem.RecuperarValor(msg, "restockThreshold")),
-                maxStockThreshold: Convert.ToInt32(TratarMenssagem.RecuperarValor(msg, "maxStockThreshold"))
+                name: Message.FindValue(msg, "Name"),
+                description: Message.FindValue(msg, "Description"),
+                price: Convert.ToDecimal(Message.FindValue(msg, "Price")),
+                catalogTypeId: Convert.ToInt32(Message.FindValue(msg, "CatalogTypeId")),
+                catalogBrandId: Convert.ToInt32(Message.FindValue(msg, "CatalogBrandId")),
+                restockThreshold: Convert.ToInt32(Message.FindValue(msg, "RestockThreshold")),
+                maxStockThreshold: Convert.ToInt32(Message.FindValue(msg, "MaxStockThreshold"))
                 );
-            IHandler<CommandRegisterItem> handler = new HandlerCatalogItem(repository);
+            IHandler<CommandRegisterItem> handler = new HandlerCatalogItem(ItemRepository());
 
             return handler.handle(command);
         }
+
         public IResponse RemoveItem(string msg)
         {
-            StoreDataContext dataContext = new StoreDataContext();
-            DatabaseComunicator comunicador = new DatabaseComunicator(dataContext);
-            ICatalogItemRepository repository = new CatalogItemRepository(comunicador);
             CommandRemoveItem command = new CommandRemoveItem(
-                id: Convert.ToInt32(TratarMenssagem.RecuperarValor(msg, "id")),
-                quantityDesired: Convert.ToDecimal(TratarMenssagem.RecuperarValor(msg, "quantityDesired"))
+                id: Convert.ToInt32(Message.FindValue(msg, "ProductId")),
+                quantityDesired: Convert.ToDecimal(Message.FindValue(msg, "Quantity"))
                 );
-            IHandler<CommandRemoveItem> handler = new HandlerCatalogItem(repository);
+            IHandler<CommandRemoveItem> handler = new HandlerCatalogItem(ItemRepository());
 
             return handler.handle(command);
         }
+
         public IResponse UpdateBrand(string msg)
         {
-            StoreDataContext dataContext = new StoreDataContext();
-            DatabaseComunicator comunicador = new DatabaseComunicator(dataContext);
-            ICatalogBrandRepository repository = new CatalogBrandRepository(comunicador);
             CommandUpdateBrand command = new CommandUpdateBrand(
-                id: Convert.ToInt32(TratarMenssagem.RecuperarValor(msg, "id")),
-                brand: TratarMenssagem.RecuperarValor(msg, "brand")
+                id: Convert.ToInt32(Message.FindValue(msg, "BrandId")),
+                brand: Message.FindValue(msg, "Brand")
                 );
-            IHandler<CommandUpdateBrand> handler = new HandlerCatalogBrand(repository);
+            IHandler<CommandUpdateBrand> handler = new HandlerCatalogBrand(BrandRepository());
 
             return handler.handle(command);
         }
+
         public IResponse UpdateItem(string msg)
         {
-            StoreDataContext dataContext = new StoreDataContext();
-            DatabaseComunicator comunicador = new DatabaseComunicator(dataContext);
-            ICatalogItemRepository repository = new CatalogItemRepository(comunicador);
             CommandUpdateItem command = new CommandUpdateItem(
-                id: Convert.ToInt32(TratarMenssagem.RecuperarValor(msg, "id")),
-                name: TratarMenssagem.RecuperarValor(msg, "name"),
-                description: TratarMenssagem.RecuperarValor(msg, "description"),
-                price: Convert.ToDecimal(TratarMenssagem.RecuperarValor(msg, "price")),
-                catalogTypeId: Convert.ToInt32(TratarMenssagem.RecuperarValor(msg, "catalogTypeId")),
-                catalogBrandId: Convert.ToInt32(TratarMenssagem.RecuperarValor(msg, "catalogBrandId")),
-                restockThreshold: Convert.ToInt32(TratarMenssagem.RecuperarValor(msg, "restockThreshold")),
-                maxStockThreshold: Convert.ToInt32(TratarMenssagem.RecuperarValor(msg, "maxStockThreshold"))
+                id: Convert.ToInt32(Message.FindValue(msg, "ProductId")),
+                name: Message.FindValue(msg, "Name"),
+                description: Message.FindValue(msg, "Description"),
+                price: Convert.ToDecimal(Message.FindValue(msg, "Price")),
+                catalogTypeId: Convert.ToInt32(Message.FindValue(msg, "CatalogTypeId")),
+                catalogBrandId: Convert.ToInt32(Message.FindValue(msg, "CatalogBrandId")),
+                restockThreshold: Convert.ToInt32(Message.FindValue(msg, "RestockThreshold")),
+                maxStockThreshold: Convert.ToInt32(Message.FindValue(msg, "MaxStockThreshold"))
                 );
-            IHandler<CommandUpdateItem> handler = new HandlerCatalogItem(repository);
+            IHandler<CommandUpdateItem> handler = new HandlerCatalogItem(ItemRepository());
 
             return handler.handle(command);
         }
+
         public IResponse UpdateType(string msg)
         {
-            StoreDataContext dataContext = new StoreDataContext();
-            DatabaseComunicator comunicador = new DatabaseComunicator(dataContext);
-            ICatalogTypeRepository repository = new CatalogTypeRepository(comunicador);
             CommandUpdateType command = new CommandUpdateType(
-                id: Convert.ToInt32(TratarMenssagem.RecuperarValor(msg, "id")),
-                type: TratarMenssagem.RecuperarValor(msg, "type")
+                id: Convert.ToInt32(Message.FindValue(msg, "TypeId")),
+                type: Message.FindValue(msg, "Type")
                 );
-            IHandler<CommandUpdateType> handler = new HandlerCatalogType(repository);
+            IHandler<CommandUpdateType> handler = new HandlerCatalogType(TypeRepository());
 
             return handler.handle(command);
         }
 
+        private StoreDataContext Context() => new StoreDataContext();
+        private ICatalogBrandRepository BrandRepository() => new CatalogBrandRepository(Context());
+        private ICatalogItemRepository ItemRepository() => new CatalogItemRepository(Context());
+        private ICatalogTypeRepository TypeRepository() => new CatalogTypeRepository(Context());
     }
 }

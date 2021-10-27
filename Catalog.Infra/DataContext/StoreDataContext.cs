@@ -1,3 +1,4 @@
+using System;
 using catalog.infra.DataContext.Maps;
 using Catalog.Core.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +29,10 @@ namespace catalog.infra.DataContext
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql("Server=localhost;User Id=root;Password=masterkey;Database=catalog", x => x.ServerVersion("10.6.4-mariadb"));
+                var connectionString = "server=localhost;user=root;password=masterkey;database=catalog";
+                var serverVersion = new MariaDbServerVersion(new Version(16, 6, 4));
+
+                optionsBuilder.UseMySql(connectionString, serverVersion);
             }
         }
 

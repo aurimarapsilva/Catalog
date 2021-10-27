@@ -1,3 +1,5 @@
+using catalog.infra.RabbitMQ;
+using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -15,7 +17,9 @@ namespace Catalog.Worker
                 .UseWindowsService()
                 .ConfigureServices((hostContext, services) =>
                 {
+                   
                     services.AddHostedService<Worker>();
+                    
                 });
     }
 }

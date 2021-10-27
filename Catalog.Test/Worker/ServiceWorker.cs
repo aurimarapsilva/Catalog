@@ -38,11 +38,7 @@ namespace catalog.test.Worker
                     return null;
             }
         }
-
-
-
-
-
+        
         public IResponse AddBrand(string msg)
         {
             CommandAddBrand command = new CommandAddBrand(
