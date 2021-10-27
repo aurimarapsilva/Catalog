@@ -135,7 +135,7 @@ namespace Catalog.Core.Commands
             AddNotifications(new Contract()
             .Requires()
             .HasMaxLengthIfNotNullOrEmpty(Name, 50, "CatalogItem.Name", "Tamanho 50 caracteres")
-            .HasExactLengthIfNotNullOrEmpty(Description, 120, "CatalogItem.Description", "Tamanho 120 caracteres"));
+            .HasMaxLengthIfNotNullOrEmpty(Description, 120, "CatalogItem.Description", "Tamanho 120 caracteres"));
         }
 
 

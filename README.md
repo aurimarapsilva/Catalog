@@ -6,10 +6,11 @@ O objetivo deste projeto é cadastrar, atulizar e excluir produtos e controlar e
 
 Foi construindo uma API REST, utilizamos os seguintes recursos como:
 
-- Swagger
-- Camadas -> Core, Infrastructure, API
-- CQRS
-- MsTest -> Para testes unitários
+- Camadas -> Core, Infrastructure, Worker
+- Patter Utilizado no Core -> CQRS
+- Testes Unitarios -> MSTest
+- RabbitMQ
+- Banco de dados -> SQL Server
 
 Mas quais funcionalidades foram implementadas?
 
@@ -26,14 +27,6 @@ Mas quais funcionalidades foram implementadas?
 - Atualizar marca do produto
 - Cadatrar tipo do produto
 - Atualizar tipo do produto
-
----
-
-## Swagger
-
-Swagger é uma linguagem de descrição de interface para descrever APIs RESTful expressas usando JSON . O Swagger é usado junto com um conjunto de ferramentas de software de código aberto para projetar, construir, documentar e usar serviços da Web RESTful . O Swagger inclui documentação automatizada, geração de código (em muitas linguagens de programação) e geração de casos de teste.
-
-![image](https://raw.githubusercontent.com/ZoeStyle/Catalog/master/Swagger.png)
 
 ---
 
@@ -70,8 +63,10 @@ Como um Banco de dados, é um produto de software cuja principal função é a d
 
 ---
 
-## Flunt
+## RabbitMQ
 
-Cada aplicativo tem regras de negócios e validações, e você provavelmente precisará manter todos os erros e notificações que aconteceram e enviá-los para algum lugar, talvez para sua IU.
+O RabbitMQ é um software de mensagens com código aberto, que implementou o protocolo "Advanced Message Queuing Protocol" (AMQP), que foi estendido com uma arquitetura de plug-in para suportar o protocolo "Streaming Text Oriented Messaging Protocol" (STOMP), o MQTT entre outros protocolos.
 
-Flunt implementa o Padrão de Notificação e ajuda você a rastrear tudo o que acontece, consolidando suas notificações e tornando-o fácil de acessar e manipular.
+![image](https://raw.githubusercontent.com/ZoeStyle/Catalog/master/RabbitMQ.png)
+
+---

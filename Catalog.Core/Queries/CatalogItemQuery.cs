@@ -14,39 +14,47 @@ namespace Catalog.Core.Queries
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static Expression<Func<CatalogItem, bool>> GetById(int id)
-        {
-            return x => x.Id == id;
-        }
+        public static Expression<Func<CatalogItem, bool>> GetById(int id) => 
+            x => x.Id == id;
 
         /// <summary>
         /// Obtem um ou mais produtos com mesmo nome
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static Expression<Func<CatalogItem, bool>> GetByName(string name)
-        {
-            return x => x.Name.StartsWith(name); ;
-        }
+        public static Expression<Func<CatalogItem, bool>> GetByName(string name) => 
+            x => x.Name.StartsWith(name);
 
         /// <summary>
         /// Obtem um ou mais produtos com mesma marca
         /// </summary>
         /// <param name="catalogBrandId"></param>
         /// <returns></returns>
-        public static Expression<Func<CatalogItem, bool>> GetByCatalogBrandId(int catalogBrandId)
-        {
-            return x => x.CatalogBrandId == catalogBrandId;
-        }
+        public static Expression<Func<CatalogItem, bool>> GetByCatalogBrandId(int? catalogBrandId) => 
+            x => x.CatalogBrandId == catalogBrandId;
 
         /// <summary>
         /// Obtem um ou mais produtos com mesmo tipo 
         /// </summary>
         /// <param name="catalogTypeId"></param>
         /// <returns></returns>
-        public static Expression<Func<CatalogItem, bool>> GetByCatalogTypeId(int catalogTypeId)
-        {
-            return x => x.CatalogTypeId == catalogTypeId;
-        }
+        public static Expression<Func<CatalogItem, bool>> GetByCatalogTypeId(int catalogTypeId) => 
+            x => x.CatalogTypeId == catalogTypeId;
+
+        /// <summary>
+        /// Obtem um ou mais produtos com mesmo tipo e com marca podendo ser nulavel 
+        /// </summary>
+        /// <param name="catalogTypeId"></param>
+        /// <returns></returns>
+        public static Expression<Func<CatalogItem, bool>> GetByCatalogTypeIdOrCatalogBrand(int catalogTypeId, int? catalogBrandId) => 
+            x => x.CatalogTypeId == catalogTypeId && x.CatalogBrandId == catalogBrandId;
+
+        /// <summary>
+        /// Obtem um ou mais produtos com mesmo tipo e com marca podendo ser nulavel 
+        /// </summary>
+        /// <param name="catalogTypeId"></param>
+        /// <returns></returns>
+        public static Expression<Func<CatalogItem, bool>> GetByCatalogTypeNullable(int? catalogTypeId) =>
+            x => x.CatalogTypeId == catalogTypeId;
     }
 }
