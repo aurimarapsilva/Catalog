@@ -2,9 +2,9 @@
 
 namespace catalog.infra.RabbitMQ
 {
-    public static class TratarMenssagem
+    public static class Message
     {
-        public static string RecuperarValor(string msg, string tagDesejada)
+        public static string FindValue(string msg, string tagDesejada)
         {
             var match = Regex.Match(msg, $"<{tagDesejada}>(.*?)</{tagDesejada}>");
             if (match.Success)

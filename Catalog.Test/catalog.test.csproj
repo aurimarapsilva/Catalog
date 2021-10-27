@@ -21,10 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Catalog.Core\Catalog.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Worker\" />
+    <ProjectReference Include="..\catalog.infra\catalog.infra.csproj" />
   </ItemGroup>
 
 </Project>

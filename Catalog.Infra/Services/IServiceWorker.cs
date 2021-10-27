@@ -4,6 +4,7 @@ namespace catalog.infra.Services
 {
     public interface IServiceWorker
     {
+        IResponse BeginTransaction(string msg);
         IResponse AddBrand(string msg);
         IResponse AddItem(string msg);
         IResponse AddType(string msg);
